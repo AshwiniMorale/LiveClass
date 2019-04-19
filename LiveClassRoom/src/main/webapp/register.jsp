@@ -36,7 +36,7 @@
   <div class="register-box-body">
     <p class="login-box-msg"><b>Register a new membership</b></p>
 
-    <form action="/register.do" method="post">
+    <form action="register.htm" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="First Name" name = "firstName">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

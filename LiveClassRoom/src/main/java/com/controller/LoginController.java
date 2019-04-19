@@ -18,13 +18,13 @@ public class LoginController
 {
 	
 
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userdetailob, HttpServletRequest req, HttpServletResponse res)
 	{
 		System.out.println("longin controoler called");
 		SaveImpl saveimpl = new SaveImpl();
 		saveimpl.register(userdetailob);
-		return new ModelAndView("Registration","message","sucessfully register");
+		return new ModelAndView("register","message","sucessfully register");
 		
 	}
 	

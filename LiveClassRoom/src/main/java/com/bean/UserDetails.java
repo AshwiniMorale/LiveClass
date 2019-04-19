@@ -8,8 +8,7 @@ public class UserDetails
 {
 	 @Id
 	 @GeneratedValue
-	 @Column
-	 private int id;
+	 private int userId;
 	 @Column
 	 private String firstName;
 	 @Column
@@ -19,14 +18,15 @@ public class UserDetails
 	 @Column
 	 private String password;
 	 @Column
-	 private int mobileNo;
+	 private String mobileNo;
 	 @Column
-	 private int role;
-	public int getId() {
-		return id;
+	 private int role=3;
+	 
+	public int getUserId() {
+		return userId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -52,10 +52,10 @@ public class UserDetails
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getMobileNo() {
+	public String getMobileNo() {
 		return mobileNo;
 	}
-	public void setMobileNo(int mobileNo) {
+	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 	
