@@ -6,6 +6,7 @@ import com.bean.UserDetails;
 
 public interface SaveDao 
 {
-	void register(UserDetails st);
+	void register(UserDetails userDetails);
+	public boolean checkUser(String emailId, String mobileNo);
 	List<Object> login(String email, String password);
 }

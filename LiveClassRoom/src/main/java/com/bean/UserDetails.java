@@ -69,9 +69,4 @@ public class UserDetails
 		this.role = 3;
 	}
 	 
-	 
-	 
-	 
-
-
 }

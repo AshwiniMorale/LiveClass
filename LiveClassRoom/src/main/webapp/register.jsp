@@ -32,8 +32,13 @@
   <div class="register-logo">
     <a href="#"><b>Education ERP</b></a>
   </div>
+  <div>
+    <h4><span class="alert alert-primary" role="alert"  style="color: red">${message } </span></h4>
+  </div>
+   
 
   <div class="register-box-body">
+  
     <p class="login-box-msg"><b>Register a new membership</b></p>
 
     <form action="register.htm" method="post">

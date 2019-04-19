@@ -1,5 +1,6 @@
 package com.daoImpl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,62 +14,57 @@ import com.dao.SaveDao;
 
 public class SaveImpl implements SaveDao
 {
-
-	public void register(UserDetails st)
+    
+    public void register(UserDetails userDeatails)
 	{
-	     System.out.println("Save() calles");
-	     Configuration cfg = new Configuration();
-	     cfg.configure();
-	     SessionFactory factory =null;
-	     Session session=null;
-	     try
-	     {
-	    	 factory = cfg.buildSessionFactory();
-	    	 session = factory.openSession();
-	     }catch (Exception e) {
-	    	 System.out.println(e);
-	     }
+	     System.out.println("SaveImpl::register() called.");
+	     SessionFactory factory = HibernateUtil.getSessionFactory();
+	     Session session = factory.openSession();
 	     Transaction tx = session.beginTransaction();
 	     System.out.println("Transection Begin");
-	     session.save(st);  
+	     session.save(userDeatails);  
 	     System.out.println("Object saved successfully.....!!");
 	     tx.commit();
 	     session.close();
-	     factory.close();
-
-
 	}
 
-
-	public List<Object> login(String email, String password)
-	{			
-		 List<Object> list = null;
-	     System.out.println("login() calles");
-	     Configuration cfg = new Configuration();
-	     cfg.configure();
-	     SessionFactory factory =null;
-	     Session session=null;
-	     try
-	     {
-	    	 factory = cfg.buildSessionFactory();
-	    	 session = factory.openSession();
-	     }catch (Exception e) {
-	    	 System.out.println(e);
-	     }
+    public boolean checkUser(String emailId, String mobileNo)
+    {
+    	System.out.println("SaveImpl::checkUser() called.");
+	 	SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
 	     Transaction tx = session.beginTransaction();
 	     System.out.println("Transection Begin");
+	     //System.out.println(userDetails.getEmailId());
+	     String hql = "FROM UserDetails WHERE EMAILID=? OR MOBILENO=?";
+	     Query q = session.createQuery(hql);
+	     q.setParameter(0, emailId);
+	     q.setParameter(1, mobileNo);
+	     tx.commit();
+	     List list = q.list();
+	     session.close();
+	     Iterator itr = list.iterator();
+	     if(itr.hasNext())
+	    	 return true;
+	     else
+	    	 return false;
+    }
+	public List<Object> login(String emailId, String password)
+	{			
+		List<Object> list = null;
+	    System.out.println("login() calles");
+	 	SessionFactory factory = HibernateUtil.getSessionFactory();
+	    Session session = factory.openSession();
+	    Transaction tx = session.beginTransaction();
+	    System.out.println("Transection Begin");
 	     
-	     String hql = "FROM UserDetails " + " WHERE email = ? " + "AND password = ?";
+	     String hql = "FROM UserDetails " + " WHERE emailId = ? " + "AND password = ?";
 	     Query query = session.createQuery(hql);
-	     query.setParameter(0, email);
+	     query.setParameter(0, emailId);
 	     query.setParameter(1, password);
 	     list = query.list();
 	     tx.commit();
 	     session.close();
-	     factory.close();
-
 		return list;
 	}
-
-
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Host My Event</title>
+  <title>Education ERP</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,13 +27,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Cyber Droid</b></a>
+    <a href="#"><b>Education ERP</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg"><b>Sign in to start your session</b></p>
+    <h3 class="login-box-msg"><b>Sign in </b></h3>
 
     <form action="login.htm" method="post">
       <div class="form-group has-feedback">
@@ -66,9 +67,10 @@
 
   </div>
   <!-- /.login-box-body -->
+  <h4><span class="alert alert-primary" role="alert">  ${message } </span></h4> 
+  
 </div>
 <!-- /.login-box -->
-
 <!-- jQuery 3 -->
 <script src="./bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
