@@ -84,7 +84,7 @@
     </form>
 
    
-    <a href="index.jsp" class="text-center">I already have a membership</a>
+    <a href="login.jsp" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>
