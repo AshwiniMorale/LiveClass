@@ -48,22 +48,24 @@ public class LoginController {
 			
 			// readnig Data From Properties File...
 			String from = rb.getString("fromEmail");
-			System.out.println("From Properties File: " + from);
+			System.out.println("mailid From Properties File: " + from);
 			
 			String password = rb.getString("password");
-			System.out.println("password Properties File: " + password);
+			System.out.println("password From Properties File: " + password);
 			
 			String to = userdetailob.getEmailId();
-			System.out.println("to object File: " + to);
+			System.out.println("to From object : " + to);
 			
 			String sub = rb.getString("subject");
-			System.out.println("subject Properties File: " + sub);
+			System.out.println("subject From Properties File: " + sub);
 			
 			String mobileNo = userdetailob.getMobileNo();
-			System.out.println("mobile object File: " + mobileNo);
+			System.out.println("mobile From object : " + mobileNo);
 			
-			String msg = rb.getString("message");
-			System.out.println("msg Properties File: " + msg);
+			String msg = rb.getString("hello")
+					+" "+userdetailob.getFirstName()+","
+					+"\n"+ rb.getString("msg");
+			System.out.println("msg From Properties File: " + msg);
 			
 			SendEmail.send(from, password, to, sub, msg);
 			SendMessage.sendMsg(mobileNo, msg);
