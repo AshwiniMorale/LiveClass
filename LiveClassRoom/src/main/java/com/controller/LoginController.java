@@ -88,10 +88,13 @@ public class LoginController {
 		Iterator itr = listob.iterator();
 		System.out.println(itr);
 		int userId= 0;
+		int roleId =0;
+		String userName=null;
 		for(UserDetails ob:listob)
 		{
 			userId = ob.getUserId();
-			
+			roleId = ob.getRole();
+			userName = ob.getFirstName()+" "+ob.getLastName();
 		}
 
 		if (itr.hasNext()) {
@@ -115,6 +118,8 @@ public class LoginController {
 				System.out.println("new session:" + httpSession.getId());
 			}
 			httpSession.setAttribute("userId",userId);
+			httpSession.setAttribute("roleId",roleId);
+			httpSession.setAttribute("userName",userName);
 			saveimpl.logDetails(logDetails);
 			System.out.println("login controller return and save logv details");
 			return new ModelAndView("UserPersonalDetails");
