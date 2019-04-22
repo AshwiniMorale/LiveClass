@@ -117,7 +117,7 @@ public class LoginController {
 			httpSession.setAttribute("userId",userId);
 			saveimpl.logDetails(logDetails);
 			System.out.println("login controller return and save logv details");
-			return new ModelAndView("login", "message", "sucessfully login");
+			return new ModelAndView("UserPersonalDetails");
 		}
 		else
 		{

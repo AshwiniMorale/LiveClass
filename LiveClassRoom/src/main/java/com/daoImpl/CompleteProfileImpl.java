@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 
 import com.bean.UserEducationalDetails;
 import com.bean.UserPersonalDetails;
+import com.bean.UserProfessionalDetails;
 import com.dao.CompleteProfileDao;
 
 public class CompleteProfileImpl implements CompleteProfileDao {
@@ -19,7 +20,6 @@ public class CompleteProfileImpl implements CompleteProfileDao {
 		System.out.println("Transection Begin");
 		
 		session.save(userPersonalDetails);
-		
 		System.out.println("Object saved successfuly");
 		tx.commit();
 		session.close();
@@ -42,7 +42,7 @@ public class CompleteProfileImpl implements CompleteProfileDao {
 		session.close();
 	}
 
-	public void saveProfessionalDetails(UserPersonalDetails userProfessionalDetails) {
+	public void saveProfessionalDetails(UserProfessionalDetails userProfessionalDetails) {
 		
 		System.out.println("CompleteProfileImpl::saveProfessionalDetails() called.");
 
