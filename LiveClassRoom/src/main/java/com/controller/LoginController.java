@@ -77,7 +77,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) {
 
-		System.out.println("longin controoler called");
+		System.out.println("login controller called");
 		boolean status = false;
 		
 		String emailId = req.getParameter("emailId");
