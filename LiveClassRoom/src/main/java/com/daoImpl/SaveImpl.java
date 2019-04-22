@@ -24,7 +24,7 @@ public class SaveImpl implements SaveDao {
 		System.out.println("Transection Begin");
 
 		session.save(userDetails);
-		System.out.println("Object saved successfully.....!!");
+		System.out.println("Object saved successfully...");
 		
 		tx.commit();
 		session.close();
@@ -80,9 +80,8 @@ public class SaveImpl implements SaveDao {
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
 		
-		
 		session.save(logDetails);
-		System.out.println("Object saved successfully.....!!");
+		System.out.println("Object saved successfully...");
 		
 		tx.commit();
 		session.close();
