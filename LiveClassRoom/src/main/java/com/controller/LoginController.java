@@ -31,13 +31,13 @@ public class LoginController {
 	// @Autowired(required=true)
 	SaveImpl saveimpl = new SaveImpl();
 	Properties prop = new Properties();
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userdetailob, HttpServletRequest req, HttpServletResponse res) 
-	{
+	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userdetailob, HttpServletRequest req,
+			HttpServletResponse res) {
 		System.out.println("Registration:: register controoler called.");
 		System.out.println(userdetailob.getEmailId() + " " + userdetailob.getMobileNo());
-		
+
 		if (saveimpl.checkUser(userdetailob.getEmailId(), userdetailob.getMobileNo())) {
 			System.out.println("LoginController::checkUser returned with true.");
 			return new ModelAndView("register", "message", "sorry email id  is alredy presesnt ");
@@ -45,31 +45,29 @@ public class LoginController {
 		} else {
 			System.out.println("LoginController::checkUser returned with false.");
 			ResourceBundle rb = ResourceBundle.getBundle("config");
-			
+
 			saveimpl.register(userdetailob);
 			System.out.println("return after register in db");
-			
+
 			// readnig Data From Properties File...
 			String from = rb.getString("fromEmail");
 			System.out.println("mailid From Properties File: " + from);
-			
+
 			String password = rb.getString("password");
 			System.out.println("password From Properties File: " + password);
-			
+
 			String to = userdetailob.getEmailId();
 			System.out.println("to From object : " + to);
-			
+
 			String sub = rb.getString("subject");
 			System.out.println("subject From Properties File: " + sub);
-			
+
 			String mobileNo = userdetailob.getMobileNo();
 			System.out.println("mobile From object : " + mobileNo);
-			
-			String msg = rb.getString("hello")
-					+" "+userdetailob.getFirstName()+","
-					+"\n"+ rb.getString("msg");
+
+			String msg = rb.getString("hello") + " " + userdetailob.getFirstName() + "," + "\n" + rb.getString("msg");
 			System.out.println("msg From Properties File: " + msg);
-			
+
 			SendEmail.send(from, password, to, sub, msg);
 			SendMessage.sendMsg(mobileNo, msg);
 			return new ModelAndView("login", "message", "Congrats you have suceessfully registered.");
@@ -124,12 +122,5 @@ public class LoginController {
 		{
 			return new ModelAndView("login", "message", "login denied");
 		}
-		
-		/*if (status)
-			return new ModelAndView("login", "message", "sucessfully login");
-		else
-			return new ModelAndView("login", "message", "login denied");
-*/
 	}
-
 }
