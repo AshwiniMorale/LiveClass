@@ -13,6 +13,7 @@
         <property name="hbm2ddl.auto">update</property>
         
           
-    	<mapping class="com.bean.UserDetails"/>  
+    	<mapping class="com.bean.UserDetails"/>
+    	<mapping class="com.bean.LogDetails"/>  
 	</session-factory>
 </hibernate-configuration>     

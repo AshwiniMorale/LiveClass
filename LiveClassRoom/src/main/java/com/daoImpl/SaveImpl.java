@@ -9,12 +9,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.bean.LogDetails;
 import com.bean.UserDetails;
 import com.dao.SaveDao;
 
 public class SaveImpl implements SaveDao {
 
-	public void register(UserDetails userDeatails) {
+	public void register(UserDetails userDetails) {
 		System.out.println("SaveImpl::register() called.");
 
 		SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -22,7 +23,7 @@ public class SaveImpl implements SaveDao {
 		Transaction tx = session.beginTransaction();
 		System.out.println("Transection Begin");
 
-		session.save(userDeatails);
+		session.save(userDetails);
 		System.out.println("Object saved successfully.....!!");
 		
 		tx.commit();
@@ -70,5 +71,22 @@ public class SaveImpl implements SaveDao {
 		tx.commit();
 		session.close();
 		return list;
+	}
+
+	public void logDetails(LogDetails logDetails)
+	{
+		System.out.println("SaveImpl::logDtails() called.");
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		
+		session.save(logDetails);
+		System.out.println("Object saved successfully.....!!");
+		
+		tx.commit();
+		session.close();
+
+
 	}
 }
