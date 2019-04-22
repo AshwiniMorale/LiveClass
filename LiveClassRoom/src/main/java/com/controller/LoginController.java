@@ -114,6 +114,7 @@ public class LoginController {
 				httpSession.setMaxInactiveInterval(0);
 				System.out.println("new session:" + httpSession.getId());
 			}
+			httpSession.setAttribute("userId",userId);
 			saveimpl.logDetails(logDetails);
 			System.out.println("login controller return and save logv details");
 			return new ModelAndView("login", "message", "sucessfully login");
