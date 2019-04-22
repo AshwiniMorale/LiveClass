@@ -92,7 +92,7 @@ public class LoginController {
 			status = true;
 		}
 		if (status)
-			return new ModelAndView("login", "message", "sucessfully login");
+			return new ModelAndView("UserPersonalDetails", "message", "sucessfully login");
 		else
 			return new ModelAndView("login", "message", "login denied");
 
