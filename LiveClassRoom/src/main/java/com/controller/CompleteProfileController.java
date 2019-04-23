@@ -13,11 +13,14 @@ import com.bean.UserEducationalDetails;
 import com.bean.UserPersonalDetails;
 import com.bean.UserProfessionalDetails;
 import com.daoImpl.CompleteProfileImpl;
+import com.daoImpl.UserPersonalDetailsImpl;
 
 @Controller
 public class CompleteProfileController {
 
+	int userId=0;
 	CompleteProfileImpl completeProfileImpl=new CompleteProfileImpl();
+	UserPersonalDetailsImpl userPersonalDetails=new UserPersonalDetailsImpl();
 
 	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
 	public ModelAndView saveUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
@@ -28,7 +31,17 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
+	public ModelAndView readUserPersonalDetails(HttpServletRequest req, HttpServletResponse res)
+	{
+		userPersonalDetails.readUserPersonalDetails(userId);
+		System.out.println("readUserPersonalDetails:: CompleteProfile controller called.");
+		return new ModelAndView("UserEducationalDetails", "message", "Your Personal Details have been saved successfully");
+		
+	}
+	
+	/*@RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
 	public ModelAndView saveUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		completeProfileImpl.saveEducationalDetails(userEducationalDetails);
@@ -44,6 +57,6 @@ public class CompleteProfileController {
 		System.out.println("saveUserProfessionalDetails:: CompleteProfile controller called.");
 		return new ModelAndView("UserProfessionalDetails", "message", "Your Professional Details have been saved successfully");
 		
-	}
+	}*/
 	
 }
