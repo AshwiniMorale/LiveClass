@@ -53,11 +53,7 @@
       </div>
 
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Category" name = "category">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Physically Challenged" name = "physically_Challenged">
+        <input type="text" class="form-control" placeholder="Physically Challenged" name = "physicallyChallenged">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -65,15 +61,15 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Area PinCode" name = "area_PinCode">
+        <input type="text" class="form-control" placeholder="Area PinCode" name = "areaPinCode">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Marital Status" name = "marital_Status">
+        <input type="text" class="form-control" placeholder="Marital Status" name = "maritalStatus">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Permanent Address" name = "permanent_Address">
+        <input type="text" class="form-control" placeholder="Permanent Address" name = "permanentAddress">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
