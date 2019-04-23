@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,21 +18,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bean.LogDetails;
 import com.bean.UserDetails;
+import com.dao.SaveDao;
 import com.daoImpl.SaveImpl;
 import com.services.SendEmail;
 import com.services.SendMessage;
 
 @Controller
 public class LoginController {
-	// @Autowired(required=true)
-	SaveImpl saveimpl = new SaveImpl();
-	Properties prop = new Properties();
-	
+
+	@Autowired
+	SaveDao saveimpl;// = new SaveImpl(); Properties prop = new Properties();
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
 			HttpServletResponse res) {
-		
+
 		System.out.println("Registration:: register() controller called.");
 		System.out.println(userDetail.getEmailId() + " " + userDetail.getMobileNo());
 
@@ -43,8 +43,8 @@ public class LoginController {
 		} else {
 			System.out.println("LoginController::checkUser() returned with false.");
 			ResourceBundle rb = ResourceBundle.getBundle("config");
-
 			saveimpl.register(userDetail);
+
 			// Reading Data From Properties File...
 			String from = rb.getString("fromEmail");
 			String password = rb.getString("password");
@@ -76,7 +76,7 @@ public class LoginController {
 		int roleId = 0;
 		String userName = null;
 		boolean status = false;
-		
+
 		for (UserDetails ob : list) {
 			userId = ob.getUserId();
 			roleId = ob.getRole();
@@ -84,11 +84,7 @@ public class LoginController {
 			status = true;
 		}
 
-//		Iterator<UserDetails> itr = list.iterator();
-//		System.out.println(itr);
 		if (status) {
-//			System.out.println(itr);
-
 			LogDetails logDetails = new LogDetails();
 			logDetails.setUserId(userId);
 			logDetails.setLoginTime(new Date());
@@ -107,7 +103,7 @@ public class LoginController {
 			httpSession.setAttribute("roleId", roleId);
 			httpSession.setAttribute("userName", userName);
 			saveimpl.logDetails(logDetails);
-			
+
 			return new ModelAndView("UserPersonalDetails");
 		} else {
 			return new ModelAndView("login", "message", "login denied");
