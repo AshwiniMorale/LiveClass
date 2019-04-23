@@ -45,7 +45,7 @@
 <form action="UserEducationalDetails.htm" method="post">
       
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Xth" name = "X">
+        <input type="text" class="form-control" placeholder="Xth Percentage" name = "XthPercentage">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -53,27 +53,41 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="XIIth" name = "XII">
+        <input type="text" class="form-control" placeholder="Xth Year" name = "XthYear">
+        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="XIIth Percentage / Diploma" name = "XIIthPercentage">
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="XIIth Board" name = "XIIthBoard">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
+      
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="UG" name = "UG">
+        <input type="text" class="form-control" placeholder="XIIth Year" name = "XIIthYear">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Stream" name = "Stream">
+        <input type="text" class="form-control" placeholder="UG" name = "uG">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+ 
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="uGYear" name = "uGYear">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="UG Marks" name = "UGMarks">
+        <input type="text" class="form-control" placeholder="Stream" name = "stream">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="UG Marks" name = "uGMarks">
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="University" name = "University">
+        <input type="text" class="form-control" placeholder="University" name = "university">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
      

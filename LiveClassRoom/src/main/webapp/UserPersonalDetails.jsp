@@ -44,7 +44,7 @@
     <form action="UserPersonalDetails.htm" method="post">
       
       <div class="form-group has-feedback">
-        <input type="date" class="form-control" placeholder="Date of Birth" name = "dob">
+        <input type="date" class="form-control" placeholder="Date of Birth" name = "dob" id="datetimepicker4">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -52,10 +52,6 @@
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Physically Challenged" name = "physicallyChallenged">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Hometown" name = "hometown">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>

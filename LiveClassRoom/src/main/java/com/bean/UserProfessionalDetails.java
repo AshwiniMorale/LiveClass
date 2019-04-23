@@ -8,10 +8,11 @@ import javax.persistence.*;
 @Table
 public class UserProfessionalDetails {
 
-	@Id
+	 @Id
 	 @GeneratedValue
+	 private int userProfessionalId;
+	 @Column
 	 private int userId;
-	
 	 @Column
 	 private String ResumeHeadline;
 	 
@@ -21,6 +22,18 @@ public class UserProfessionalDetails {
 	 @Column
 	 private String KeySkills;
 	 
+	 
+	 
+	 public int getUserProfessionalId() {
+		return userProfessionalId;
+	}
+
+	public void setUserProfessionalId(int userProfessionalId) {
+		this.userProfessionalId = userProfessionalId;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+   	 @JoinColumn(name = "userId")
 	 public int getUserId() {
 		return userId;
 	}

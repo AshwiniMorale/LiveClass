@@ -1,10 +1,11 @@
 package com.bean;
 
+
 import java.sql.Date;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table
@@ -14,17 +15,13 @@ public class UserPersonalDetails {
 	@GeneratedValue
 	private int userPersonalId;
 	@Column
-	private Date dob;
+	private String dob;
 	@Column
 	private String gender;
 	@Column
-	private String category;
-	@Column
-	private String physicallyChallenged;
-	@Column
 	private String hometown;
 	@Column
-	private double areaPinCode;
+	private String areaPinCode;
 	@Column
 	private String maritalStatus;
 	@Column
@@ -50,11 +47,12 @@ public class UserPersonalDetails {
 		this.userId = userId;
 	}
 
-	public Date getDob() {
+//	@DateTimeFormat
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -66,22 +64,7 @@ public class UserPersonalDetails {
 		this.gender = gender;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getPhysicallyChallenged() {
-		return physicallyChallenged;
-	}
-
-	public void setPhysicallyChallenged(String physicallyChallenged) {
-		this.physicallyChallenged = physicallyChallenged;
-	}
-
+	
 	public String getHometown() {
 		return hometown;
 	}
@@ -90,11 +73,11 @@ public class UserPersonalDetails {
 		this.hometown = hometown;
 	}
 
-	public double getAreaPinCode() {
+	public String getAreaPinCode() {
 		return areaPinCode;
 	}
 
-	public void setAreaPinCode(double areaPinCode) {
+	public void setAreaPinCode(String areaPinCode) {
 		this.areaPinCode = areaPinCode;
 	}
 
