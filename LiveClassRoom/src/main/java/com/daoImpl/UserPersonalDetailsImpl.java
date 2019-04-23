@@ -15,7 +15,7 @@ import com.dao.UserPersonalDetailsDao;
 public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 
 	public void saveUserPersonalDetails(UserPersonalDetails userPersonalDetails) {
-		System.out.println("CompleteProfileImpl::saveUserPersonalDetails() called.");
+		System.out.println("UserPersonalDetailsImpl::saveUserPersonalDetails() called.");
 
 		SessionFactory factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
@@ -32,7 +32,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 
 	public List<UserPersonalDetails> readUserPersonalDetails(int userId) {
 		
-		System.out.println("CompleteProfileImpl::saveUserPersonalDetails() called.");
+		System.out.println("UserPersonalDetailsImpl::saveUserPersonalDetails() called.");
 		List<UserPersonalDetails> list=new ArrayList<UserPersonalDetails>();
 		SessionFactory factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
@@ -54,7 +54,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 	{
 		
 
-		System.out.println("CompleteProfileImpl::updateUserPersonalDetails() called.");
+		System.out.println("UserPersonalDetailsImpl::updateUserPersonalDetails() called.");
 
 		SessionFactory factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
@@ -69,7 +69,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 
 	public void deleteUserPersonalDetails(UserPersonalDetails userPersonalDetails, int userId) {
 		
-		System.out.println("CompleteProfileImpl::deleteUserPersonalDetails() called.");
+		System.out.println("UserPersonalDetailsImpl::deleteUserPersonalDetails() called.");
 
 		SessionFactory factory=HibernateUtil.getSessionFactory();
 		Session session=factory.openSession();
