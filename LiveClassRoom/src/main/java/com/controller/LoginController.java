@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -25,6 +27,9 @@ import com.services.SendMessage;
 
 @Controller
 public class LoginController {
+	LoginController() {
+		System.out.println("Constroctur:");
+	}
 
 	@Autowired
 	SaveDao saveimpl;// = new SaveImpl(); Properties prop = new Properties();
@@ -109,4 +114,5 @@ public class LoginController {
 			return new ModelAndView("login", "message", "login denied");
 		}
 	}
+
 }
