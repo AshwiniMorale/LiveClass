@@ -66,7 +66,7 @@ public class UserDetails
 		return role;
 	}
 	public void setRole(int role) {
-		this.role = 3;
+		this.role = role;
 	}
 	 
 }

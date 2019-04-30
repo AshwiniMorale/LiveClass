@@ -13,7 +13,8 @@
 	<context:component-scan base-package="com.controller" />
 	<context:component-scan base-package="com.dao" />
 	<context:component-scan base-package="com.daoImpl" />
-
+	<context:component-scan base-package="com.services" />
+	
 
 	<!-- Internal View Resolver Class From Spring -->
 	<bean

@@ -37,7 +37,7 @@ public class CompleteProfileController {
 	}
 	
 
-	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/readUserPersonalDetails", method = RequestMethod.POST)
 	public ModelAndView readUserPersonalDetails(HttpServletRequest req, HttpServletResponse res)
 	{
 		userPersonalDetailsImpl.readUserPersonalDetails(userId);
@@ -46,7 +46,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUserPersonalDetails", method = RequestMethod.POST)
 	public ModelAndView updateUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails, userId);
@@ -55,7 +55,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteUserPersonalDetails", method = RequestMethod.POST)
 	public ModelAndView deleteUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails, userId);
@@ -76,7 +76,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/readUserEducationalDetails", method = RequestMethod.POST)
 	public ModelAndView readUserEducationalDetails(HttpServletRequest req, HttpServletResponse res)
 	{
 		userEducationalDetailsImpl.readUserEducationalDetails(userId);
@@ -86,7 +86,7 @@ public class CompleteProfileController {
 	}
 	
 	
-	@RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUserEducationalDetails", method = RequestMethod.POST)
 	public ModelAndView updateUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userEducationalDetailsImpl.updateUserEducationalDetails(userEducationalDetails,userId);
@@ -94,7 +94,7 @@ public class CompleteProfileController {
 		return new ModelAndView("UserProfessionalDetails", "message", "Your Educational Details have been saved successfully");
 		
 	}
-	@RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteUserEducationalDetails", method = RequestMethod.POST)
 	public ModelAndView deleteUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userEducationalDetailsImpl.deleteUserEducationalDetails(userEducationalDetails, userId);
@@ -115,7 +115,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserProfessionalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/readUserProfessionalDetails", method = RequestMethod.POST)
 	public ModelAndView readUserProfessionalDetails(HttpServletRequest req, HttpServletResponse res)
 	{
 		userProfessionalDetailsImpl.readUserProfessionalDetails(userId);
@@ -124,7 +124,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserProfessionalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUserProfessionalDetails", method = RequestMethod.POST)
 	public ModelAndView updateUserProfessionalDetails(@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userProfessionalDetailsImpl.updateUserProfessionalDetails(userProfessionalDetails, userId);
@@ -133,7 +133,7 @@ public class CompleteProfileController {
 		
 	}
 	
-	@RequestMapping(value = "/UserProfessionalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteUserProfessionalDetails", method = RequestMethod.POST)
 	public ModelAndView deleteUserProfessionalDetails(@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		userProfessionalDetailsImpl.deleteUserProfessionalDetails(userProfessionalDetails, userId);
