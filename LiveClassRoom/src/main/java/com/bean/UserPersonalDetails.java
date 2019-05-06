@@ -1,11 +1,7 @@
 package com.bean;
 
 
-import java.sql.Date;
-
 import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table

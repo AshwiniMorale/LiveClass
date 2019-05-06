@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import com.bean.UserEducationalDetails;
-import com.bean.UserPersonalDetails;
 import com.dao.UserEducationalDetailsDao;
 
 @Service
@@ -31,6 +30,7 @@ public class UserEducationalDetailsImpl implements UserEducationalDetailsDao{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UserEducationalDetails> readUserEducationalDetails(int userId) {
 
 		System.out.println("CompleteProfileImpl::saveUserEducationalDetails() called.");
@@ -60,6 +60,7 @@ public class UserEducationalDetailsImpl implements UserEducationalDetailsDao{
 		System.out.println("Transection Begin");
 		userEducationalDetails.setUserId(userId);
 		session.update(userEducationalDetails);
+		tx.commit();
 		session.close();
 		
 	}
@@ -74,6 +75,7 @@ public class UserEducationalDetailsImpl implements UserEducationalDetailsDao{
 		System.out.println("Transection Begin");
 		userEducationalDetails.setUserId(userId);
 		session.delete(userEducationalDetails);
+		tx.commit();
 		session.close();
 		
 	}
