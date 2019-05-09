@@ -24,7 +24,8 @@ public class SendMessage
          BufferedReader reader=null;
 
          //encoding message
-         String encoded_message=URLEncoder.encode(message);
+         @SuppressWarnings("deprecation")
+		String encoded_message=URLEncoder.encode(message);
 
          //Send SMS API
          String mainUrl="http://api.msg91.com/api/sendhttp.php?";

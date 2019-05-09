@@ -30,6 +30,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UserPersonalDetails> readUserPersonalDetails(int userId) {
 		
 		System.out.println("UserPersonalDetailsImpl::saveUserPersonalDetails() called.");
@@ -62,6 +63,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 		System.out.println("Transection Begin");
 		userPersonalDetails.setUserId(userId);
 		session.update(userPersonalDetails);
+		tx.commit();
 		session.close();
 		
 		
@@ -77,6 +79,7 @@ public class UserPersonalDetailsImpl implements UserPersonalDetailsDao {
 		System.out.println("Transection Begin");
 		userPersonalDetails.setUserId(userId);
 		session.delete(userPersonalDetails);
+		tx.commit();
 		session.close();
 		
 	}

@@ -1,10 +1,7 @@
 package com.controller;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bean.LogDetails;
 import com.bean.UserDetails;
 import com.dao.SaveDao;
-import com.daoImpl.SaveImpl;
 import com.services.SendEmail;
 import com.services.SendMessage;
 
@@ -38,7 +34,7 @@ public class LoginController {
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
 			HttpServletResponse res) {
 
-		System.out.println("Registration:: register() controller called.");
+		System.out.println("Registration:: register() Controller called.");
 		System.out.println(userDetail.getEmailId() + " " + userDetail.getMobileNo());
 
 		if (saveimpl.checkUser(userDetail.getEmailId(), userDetail.getMobileNo())) {
@@ -68,13 +64,11 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) {
-
-		System.out.println("Registration:: login() controller called.\"");
+		System.out.println("Registration:: login() Controller called.");
 
 		String emailId = req.getParameter("emailId");
 		String password = req.getParameter("password");
 
-		SaveImpl saveimpl = new SaveImpl();
 		List<UserDetails> list = saveimpl.login(emailId, password);
 
 		int userId = 0;
@@ -110,9 +104,33 @@ public class LoginController {
 			saveimpl.logDetails(logDetails);
 
 			return new ModelAndView("UserPersonalDetails");
-		} else {
+		} else
 			return new ModelAndView("login", "message", "login denied");
-		}
+		
 	}
 
+	@RequestMapping(value = "/forget", method = RequestMethod.POST)
+	public ModelAndView forgetPass(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("Registration:: forgetPass() Controller called.");
+		String emailId = req.getParameter("emailId");
+		List<UserDetails> list = null;
+		String password = null;
+		list = saveimpl.forgetPassword(emailId);
+		for (UserDetails ob : list) {
+			password = ob.getPassword();
+		}
+		if(password.equals(null)) 
+			return new ModelAndView("forgetpass","message","Please Enter Valid Email Id...");
+		else {
+			ResourceBundle rb = ResourceBundle.getBundle("config");
+			String from = rb.getString("fromEmail");
+			String mailpassword = rb.getString("password");
+			String sub = rb.getString("pfSubject");
+			String msg= "Your Password is:--> "+password;
+			
+			SendEmail.send(from, mailpassword, emailId, sub, msg);
+			return new ModelAndView("forgetpass","message","A mail has been Sent to Your registerd Email Id...");
+		}
+		
+	}
 }
