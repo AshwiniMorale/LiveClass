@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 
 import com.bean.LogDetails;
@@ -46,15 +45,17 @@ public class SaveImpl implements SaveDao {
 		q.setParameter(0, emailId);
 		q.setParameter(1, mobileNo);
 		tx.commit();
-		List list = q.list();
+		@SuppressWarnings("unchecked")
+		List<UserDetails> list = q.list();
 		session.close();
-		Iterator itr = list.iterator();
+		Iterator<UserDetails> itr = list.iterator();
 		if (itr.hasNext())
 			return true;
 		else
 			return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UserDetails> login(String emailId, String password) {
 		
 		System.out.println("SaveImpl::login() called.");
@@ -89,5 +90,25 @@ public class SaveImpl implements SaveDao {
 		session.close();
 
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserDetails> forgetPassword(String emailId) {
+		System.out.println("SaveImpl::forgetPassword() called.");
+		List<UserDetails> list = null;
+		
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		System.out.println("SaveImpl::forgetPassword()::Transection Begin");
+
+		String hql = "FROM UserDetails " + " WHERE emailId = ? ";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, emailId);
+		list = query.list();
+		tx.commit();
+		session.close();
+		return list;
 	}
 }

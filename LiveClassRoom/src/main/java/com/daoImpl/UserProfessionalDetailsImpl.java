@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.bean.UserPersonalDetails;
 import com.bean.UserProfessionalDetails;
 import com.dao.UserProfessionalDetailsDao;
 
@@ -31,6 +30,7 @@ public class UserProfessionalDetailsImpl implements UserProfessionalDetailsDao{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UserProfessionalDetails> readUserProfessionalDetails(int userId) {
 		
 		System.out.println("CompleteProfileImpl::saveUserProfessionalDetails() called.");
@@ -60,6 +60,7 @@ public class UserProfessionalDetailsImpl implements UserProfessionalDetailsDao{
 		System.out.println("Transection Begin");
 		userProfessionalDetails.setUserId(userId);
 		session.update(userProfessionalDetails);
+		tx.commit();
 		session.close();
 		
 	}
@@ -74,6 +75,7 @@ public class UserProfessionalDetailsImpl implements UserProfessionalDetailsDao{
 		System.out.println("Transection Begin");
 		userProfessionalDetails.setUserId(userId);
 		session.delete(userProfessionalDetails);
+		tx.commit();
 		session.close();
 		
 	}
