@@ -1,109 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Education ERP</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="./bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="./dist/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="./plugins/iCheck/square/blue.css">
+<!-- Required meta tags-->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="au theme template">
+<meta name="author" content="Hau Nguyen">
+<meta name="keywords" content="au theme template">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+<!-- Title Page-->
+<title>Register</title>
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!-- Fontfaces CSS-->
+<link href="css/font-face.css" rel="stylesheet" media="all">
+<link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
+	rel="stylesheet" media="all">
+<link href="vendor/font-awesome-5/css/fontawesome-all.min.css"
+	rel="stylesheet" media="all">
+<link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
+	rel="stylesheet" media="all">
+
+<!-- Bootstrap CSS-->
+<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet"
+	media="all">
+
+<!-- Vendor CSS-->
+<link href="vendor/animsition/animsition.min.css" rel="stylesheet"
+	media="all">
+<link
+	href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
+	rel="stylesheet" media="all">
+<link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+<link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet"
+	media="all">
+<link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="vendor/perfect-scrollbar/perfect-scrollbar.css"
+	rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="css/theme.css" rel="stylesheet" media="all">
+
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="#"><b>Education ERP</b></a>
-  </div>
-  <div>
-    <h4><span class="alert alert-primary" role="alert"  style="color: red">${message } </span></h4>
-  </div>
-   
 
-  <div class="register-box-body">
-  
-    <p class="login-box-msg"><b>Register a new membership</b></p>
+<body class="animsition">
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+		<div class="container-fluid">
+			<!-- Logo -->
+			<div class="navbar-header">
+				<h2 class="text-white">
+					<strong>EDUCATION ERP</strong>
+				</h2>
+			</div>
+		</div>
+	</nav>
+	<div class="page-wrapper">
+		<div class="page-content--bge5">
+			<div class="container">
+				<div class="login-wrap">
+					<div class="card ">
+						<div class="card-header bg-primary">
+							<h4 class="text-white text-center">SIGN-UP</h4>
+						</div>
+						<div class="card-body">
+							<form action="register.htm" method="post" class="form-vertical">
+								<div class="row form-group">
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">First Name</span>
+										<input class="form-control" type="text" name="firstName">
+									</div>
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">Last Name</span>
+										<input class="form-control" type="text" name="lastName">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">Email</span> <input class="form-control" type="email"
+											name="emailId">
+									</div>
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">Mobile</span>
+										<input class="form-control" type="text"
+											name="mobileNO">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">Password</span>
+										<input class="form-control"
+											type="password" name="password">
+									</div>
+									<div class="col col-sm-6">
+										<span class="badge badge-pill badge-primary">Conform Password</span>
+										<input class="form-control"
+											type="password" name="cPassword">
+									</div>
+								</div>
+								<br><br>
+								<div class="login-checkbox">
+									<label class="text-primary"> <input type="checkbox" name="aggree">Agree
+										the terms and policy
+									</label>
+								</div>
+								<button class="au-btn au-btn--block au-btn--green m-b-15"
+									type="submit">
+									<b>register</b>
+								</button>
+							</form>
+							<div class="register-link">
+								<p>
+									Already have account? <a href="login.jsp">Sign In</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <form action="register.htm" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="First Name" name = "firstName">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Last Name" name = "lastName">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email" name = "emailId">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Mobile number" name = "mobileNo">
-        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-      </div>
+	<!-- Jquery JS-->
+	<script src="vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS-->
+	<script src="vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<!-- Vendor JS       -->
+	<script src="vendor/slick/slick.min.js">
+		
+	</script>
+	<script src="vendor/wow/wow.min.js"></script>
+	<script src="vendor/animsition/animsition.min.js"></script>
+	<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+		
+	</script>
+	<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+	<script src="vendor/counter-up/jquery.counterup.min.js">
+		
+	</script>
+	<script src="vendor/circle-progress/circle-progress.min.js"></script>
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="vendor/select2/select2.min.js">
+		
+	</script>
 
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name = "password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Retype password" name = "rPassword">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
+	<!-- Main JS-->
+	<script src="js/main.js"></script>
 
-   
-    <a href="login.jsp" class="text-center">I already have a membership</a>
-  </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery 3 -->
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="./plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
 </body>
+
 </html>
+<!-- end document-->
