@@ -1,11 +1,6 @@
 package com.bean;
 
-
-import java.sql.Date;
-
 import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table
@@ -28,7 +23,7 @@ public class UserPersonalDetails {
 	private String permanentAddress;
 	@Column
 	private int userId;
-	
+
 	public int getUserPersonalId() {
 		return userPersonalId;
 	}
@@ -47,7 +42,6 @@ public class UserPersonalDetails {
 		this.userId = userId;
 	}
 
-//	@DateTimeFormat
 	public String getDob() {
 		return dob;
 	}
@@ -64,7 +58,6 @@ public class UserPersonalDetails {
 		this.gender = gender;
 	}
 
-	
 	public String getHometown() {
 		return hometown;
 	}
