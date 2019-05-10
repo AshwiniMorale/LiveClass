@@ -17,7 +17,7 @@ public class QueryController {
 
 QueryImpl queryImpl=new QueryImpl();
 	
-	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView saveQuery(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
 	{
 		queryImpl.saveQuery();
