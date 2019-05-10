@@ -84,7 +84,7 @@
 									<div class="col col-sm-6">
 										<span class="badge badge-pill badge-primary">Mobile</span>
 										<input class="form-control" type="text"
-											name="mobileNO">
+											name="mobileNo">
 									</div>
 								</div>
 								<div class="row form-group">

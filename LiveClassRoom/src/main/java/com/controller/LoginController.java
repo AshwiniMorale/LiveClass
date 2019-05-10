@@ -23,12 +23,13 @@ import com.services.SendMessage;
 
 @Controller
 public class LoginController {
+	
 	LoginController() {
 		System.out.println("Constroctur:");
 	}
 
 	@Autowired
-	SaveDao saveimpl;// = new SaveImpl(); Properties prop = new Properties();
+	SaveDao saveimpl;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
