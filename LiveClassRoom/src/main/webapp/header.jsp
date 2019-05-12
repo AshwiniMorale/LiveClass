@@ -104,7 +104,7 @@
 							</div>
 							<div class="account-dropdown__body">
 								<div class="account-dropdown__item">
-									<a href="#"> <i class="zmdi zmdi-account"></i>Account
+									<a href="showStudentprofile.jsp"> <i class="zmdi zmdi-account"></i>Account
 									</a>
 								</div>
 								<div class="account-dropdown__item">
@@ -225,7 +225,7 @@
 					</div>
 					<div class="account-dropdown__body">
 						<div class="account-dropdown__item">
-							<a href="#"> <i class="zmdi zmdi-account"></i>Account
+							<a href="showStudentprofile.jsp"> <i class="zmdi zmdi-account"></i>Account
 							</a>
 						</div>
 						<div class="account-dropdown__item">
