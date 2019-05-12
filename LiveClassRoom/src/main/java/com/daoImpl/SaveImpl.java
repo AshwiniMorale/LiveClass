@@ -2,16 +2,13 @@ package com.daoImpl;
 
 import java.util.Iterator;
 import java.util.List;
-
+import com.bean.UserDetails;
+import com.dao.SaveDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
-
-import com.bean.LogDetails;
-import com.bean.UserDetails;
-import com.dao.SaveDao;
 
 @Service
 public class SaveImpl implements SaveDao {
@@ -26,26 +23,26 @@ public class SaveImpl implements SaveDao {
 
 		session.save(userDetails);
 		System.out.println("Object saved successfully...");
-		
+
 		tx.commit();
 		session.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean checkUser(String emailId, String mobileNo) {
 		System.out.println("SaveImpl::checkUser() called.");
-		
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
 		System.out.println("Transection Begin");
-		
+
 		// System.out.println(userDetails.getEmailId());
 		String hql = "FROM UserDetails WHERE EMAILID=? OR MOBILENO=?";
 		Query q = session.createQuery(hql);
 		q.setParameter(0, emailId);
 		q.setParameter(1, mobileNo);
 		tx.commit();
-		@SuppressWarnings("unchecked")
 		List<UserDetails> list = q.list();
 		session.close();
 		Iterator<UserDetails> itr = list.iterator();
@@ -57,10 +54,10 @@ public class SaveImpl implements SaveDao {
 
 	@SuppressWarnings("unchecked")
 	public List<UserDetails> login(String emailId, String password) {
-		
+
 		System.out.println("SaveImpl::login() called.");
 		List<UserDetails> list = null;
-		
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -76,28 +73,11 @@ public class SaveImpl implements SaveDao {
 		return list;
 	}
 
-	public void logDetails(LogDetails logDetails)
-	{
-		System.out.println("SaveImpl::logDtails() called.");
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		
-		session.save(logDetails);
-		System.out.println("Object saved successfully...");
-		
-		tx.commit();
-		session.close();
-
-
-	}
-
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<UserDetails> forgetPassword(String emailId) {
 		System.out.println("SaveImpl::forgetPassword() called.");
 		List<UserDetails> list = null;
-		
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();

@@ -17,19 +17,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bean.LogDetails;
 import com.bean.UserDetails;
+import com.dao.LogDao;
 import com.dao.SaveDao;
 import com.services.SendEmail;
 import com.services.SendMessage;
 
 @Controller
 public class LoginController {
-	
+
 	LoginController() {
 		System.out.println("Constroctur:");
 	}
 
 	@Autowired
 	SaveDao saveimpl;
+
+	@Autowired
+	LogDao logDaoImpl;
+
+	LogDetails logDetails;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
@@ -44,7 +50,7 @@ public class LoginController {
 
 		} else {
 			System.out.println("LoginController::checkUser() returned with false.");
-			ResourceBundle rb = ResourceBundle.getBundle("config");
+			ResourceBundle rb = ResourceBundle.getBundle("application");
 			saveimpl.register(userDetail);
 
 			// Reading Data From Properties File...
@@ -76,38 +82,53 @@ public class LoginController {
 		int roleId = 0;
 		String userName = null;
 		boolean status = false;
+		String dbEmail = null;
 
 		for (UserDetails ob : list) {
 			userId = ob.getUserId();
 			roleId = ob.getRole();
 			userName = ob.getFirstName() + " " + ob.getLastName();
+			dbEmail = ob.getEmailId();
 			status = true;
 		}
 
 		if (status) {
-			LogDetails logDetails = new LogDetails();
+			logDetails = new LogDetails();
 			logDetails.setUserId(userId);
 			logDetails.setLoginTime(new Date());
 			System.out.println(new Date());
 			HttpSession httpSession = req.getSession();
-			System.out.println("old session : " + httpSession.getId());
-			System.out.println("session last access time : " + httpSession.getLastAccessedTime());
-			System.out.println("max inactive time interval : " + httpSession.getMaxInactiveInterval());
+
 			if (!httpSession.isNew()) {
 				httpSession.invalidate();
 				httpSession = req.getSession();
 				httpSession.setMaxInactiveInterval(0);
-				System.out.println("new session:" + httpSession.getId());
 			}
+
 			httpSession.setAttribute("userId", userId);
 			httpSession.setAttribute("roleId", roleId);
 			httpSession.setAttribute("userName", userName);
-			saveimpl.logDetails(logDetails);
-
-			return new ModelAndView("UserPersonalDetails");
+			httpSession.setAttribute("emailId", dbEmail);
+			boolean usrStatus = logDaoImpl.returnLogDetails(userId);
+			logDaoImpl.saveLogDetails(logDetails);
+			if (roleId == 1)
+				return new ModelAndView("adminDashBoard");
+			else if (roleId == 2)
+				return new ModelAndView("FacDeshBoard");
+			else if (usrStatus)
+				return new ModelAndView("stuDashboard");
+			else
+				return new ModelAndView("UserPersonalDetails");
 		} else
 			return new ModelAndView("login", "message", "login denied");
-		
+
+	}
+
+	@RequestMapping(value = "/loginout", method = RequestMethod.POST)
+	public ModelAndView loginOut(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("Registration:: loginOut() Controller called.");
+
+		return new ModelAndView("login", "message", "login out Successfully...");
 	}
 
 	@RequestMapping(value = "/forget", method = RequestMethod.POST)
@@ -120,18 +141,18 @@ public class LoginController {
 		for (UserDetails ob : list) {
 			password = ob.getPassword();
 		}
-		if(password.equals(null)) 
-			return new ModelAndView("forgetpass","message","Please Enter Valid Email Id...");
+		if (password.equals(null))
+			return new ModelAndView("forgetpass", "message", "Please Enter Valid Email Id...");
 		else {
 			ResourceBundle rb = ResourceBundle.getBundle("config");
 			String from = rb.getString("fromEmail");
 			String mailpassword = rb.getString("password");
 			String sub = rb.getString("pfSubject");
-			String msg= "Your Password is:--> "+password;
-			
+			String msg = "Your Password is:--> " + password;
+
 			SendEmail.send(from, mailpassword, emailId, sub, msg);
-			return new ModelAndView("forgetpass","message","A mail has been Sent to Your registerd Email Id...");
+			return new ModelAndView("forgetpass", "message", "A mail has been Sent to Your registerd Email Id...");
 		}
-		
+
 	}
 }
