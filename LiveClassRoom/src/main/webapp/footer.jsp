@@ -1,10 +1,10 @@
 <!-- COPYRIGHT-->
             <section class="p-t-60 p-b-20">
-                <div class="container">
+                <div class="container-flude bg-secondary">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                <p class="text text-white">Copyright © 2018 Education ERP. All rights reserved. Template by <strong>Mr. Prince</strong>.</p>
                             </div>
                         </div>
                     </div>
