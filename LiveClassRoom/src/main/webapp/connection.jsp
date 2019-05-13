@@ -12,8 +12,12 @@
 <body>
 	<sql:setDataSource var="connectionDS"
 		driver="com.mysql.cj.jdbc.Driver"
+<<<<<<< HEAD
 		url="jdbc:mysql://localhost:3306/liveclassroom" 
 		user="root"
+=======
+		url="jdbc:mysql://localhost:3306/LiveClassRoom" user="root"
+>>>>>>> branch 'master' of https://github.com/AshwiniMorale/LiveClass.git
 		password="root" />
 	<c:set var="connectionDS" scope="request" />
 </body>
