@@ -10,11 +10,13 @@
 </head>
 
 <body>
-	<sql:setDataSource var="webappDataSource"
+	<sql:setDataSource var="connectionDS"
 		driver="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/cyberedudb" user="root"
+		url="jdbc:mysql://localhost:3306/liveclassroom" 
+		user="root"
+		url="jdbc:mysql://localhost:3306/LiveClassRoom" user="root"
 		password="root" />
-	<c:set var="webappDataSource" scope="request" />
+	<c:set var="connectionDS" scope="request" />
 </body>
 </html>
 
