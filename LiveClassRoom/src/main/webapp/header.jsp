@@ -247,12 +247,3 @@
 	</div>
 </div>
 <!-- END HEADER MOBILE -->
-<%@include file="connection.jsp"%>
-
-<!DOCTYPE html>
-<html>
-<body>
-
-
-</body>
-</html>

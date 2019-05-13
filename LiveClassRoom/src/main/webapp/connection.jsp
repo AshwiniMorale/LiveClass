@@ -14,7 +14,6 @@
 		driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/liveclassroom" 
 		user="root"
-		url="jdbc:mysql://localhost:3306/LiveClassRoom" user="root"
 		password="root" />
 	<c:set var="connectionDS" scope="request" />
 </body>
