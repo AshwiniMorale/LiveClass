@@ -24,20 +24,21 @@
 			</div>
 			<div class="header__navbar">
 				<ul class="list-unstyled">
-					<li><a href="stuDashboard.jsp"> <i class="fas fa-tachometer-alt"></i>Dashboard
-							<span class="bot-line"></span>
+					<li><a href="stuDashboard.jsp"> <i
+							class="fas fa-tachometer-alt"></i>Dashboard <span
+							class="bot-line"></span>
 					</a></li>
-					<li><a href="showStudentDetails.jsp"> <i class="fas fa-file-text"></i> <span
+					<li><a href="#"> <i class="fas fa-file-text"></i> <span
 							class="bot-line"></span>C
 					</a></li>
 					<li><a href="#"> <i class="fas fa-file-text"></i> <span
 							class="bot-line"></span>C++
 					</a></li>
-					<li class="has-sub"><a href="#"> <i
-							class="fas fa-file-text"></i> <span class="bot-line"></span>Java
+					<li><a href="#"> <i class="fas fa-file-text"></i> <span
+							class="bot-line"></span>Java
 					</a></li>
-					<li class="has-sub"><a href="#"> <i
-							class="fas fa-file-text"></i> <span class="bot-line"></span>Bootstrap
+					<li><a href="#"> <i class="fas fa-file-text"></i> <span
+							class="bot-line"></span>Bootstrap
 					</a></li>
 				</ul>
 			</div>
@@ -104,7 +105,8 @@
 							</div>
 							<div class="account-dropdown__body">
 								<div class="account-dropdown__item">
-									<a href="showStudentprofile.jsp"> <i class="zmdi zmdi-account"></i>Account
+									<a href="showStudentprofile.jsp"> <i
+										class="zmdi zmdi-account"></i>Profile
 									</a>
 								</div>
 								<div class="account-dropdown__item">
@@ -113,7 +115,7 @@
 								</div>
 							</div>
 							<div class="account-dropdown__footer">
-								<a href="#"> <i class="zmdi zmdi-power"></i>Logout
+								<a href="logout.htm"> <i class="zmdi zmdi-power"></i>Logout
 								</a>
 							</div>
 						</div>
@@ -225,7 +227,8 @@
 					</div>
 					<div class="account-dropdown__body">
 						<div class="account-dropdown__item">
-							<a href="showStudentprofile.jsp"> <i class="zmdi zmdi-account"></i>Account
+							<a href="showStudentprofile.jsp"> <i
+								class="zmdi zmdi-account"></i>Profile
 							</a>
 						</div>
 						<div class="account-dropdown__item">
@@ -238,7 +241,7 @@
 						</div>
 					</div>
 					<div class="account-dropdown__footer">
-						<a href="#"> <i class="zmdi zmdi-power"></i>Logout
+						<a href="logout.htm"> <i class="zmdi zmdi-power"></i>Logout
 						</a>
 					</div>
 				</div>
