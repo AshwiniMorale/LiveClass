@@ -250,8 +250,3 @@
 	</div>
 </div>
 <!-- END HEADER MOBILE -->
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch 'master' of https://github.com/AshwiniMorale/LiveClass.git
