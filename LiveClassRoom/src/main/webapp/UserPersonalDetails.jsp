@@ -1,104 +1,135 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Education ERP</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="./bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="./dist/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="./plugins/iCheck/square/blue.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>:: Dashboard ::</title>
+<%@include file="links.jsp"%>
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="#"><b>Education ERP</b></a>
-  </div>
-  <div>
-    <h4><span class="alert alert-primary" role="alert"  style="color: red">${message } </span></h4>
-  </div>
-   
-
-  <div class="register-box-body">
-  
-    <p class="login-box-msg"><b>Complete Your Profile</b></p>
-
-    <form action="UserPersonalDetails.htm" method="post">
-      
-      <div class="form-group has-feedback">
-        <input type="date" class="form-control" placeholder="Date of Birth" name = "dob" id="datetimepicker4">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Gender" name = "gender">
-        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-      </div>
-
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Hometown" name = "hometown">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Area PinCode" name = "areaPinCode">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Marital Status" name = "maritalStatus">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Permanent Address" name = "permanentAddress">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="row">
-        
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
-
-   
-      </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery 3 -->
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="./plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
+<body class="animsition">
+	<div class="page-wrapper">
+		<!-- PAGE CONTENT-->
+		<div class="page-content--bgf7">
+			<!-- BREADCRUMB -->
+			<section class="au-breadcrumb2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="au-breadcrumb-content">
+								<div class="au-breadcrumb-left">
+									<span class="au-breadcrumb-span">You are here:</span>
+									<ul class="list-unstyled list-inline au-breadcrumb__list">
+										<li class="list-inline-item active"><a href="#">Home</a></li>
+										<li class="list-inline-item seprate"><span>/</span></li>
+										<li class="list-inline-item">Dashboard</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- END BREADCRUMB-->
+			<div class="container-flude bg-white">
+				<div class="main-containt">
+					<div class="section__content section__content--p30">
+						<form action="UserPersonalDetails.htm" method="post">
+							<div class="row">
+								<div class="col-md-12" style="height: 500px">
+									<div class="card border border-primary">
+										<div class="card-header bg-info">
+											<strong class="card-title text-white">Profile</strong>
+										</div>
+										<div class="card-body">
+											<div class="row">
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="date" class="form-control"
+																placeholder="Date of Birth" name="dob"
+																id="datetimepicker4">
+														</div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="text" class="form-control"
+																placeholder="Gender" name="gender">
+														</div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="text" class="form-control"
+																placeholder="Hometown" name="hometown">
+														</div>
+													</section>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="text" class="form-control"
+																placeholder="Area PinCode" name="areaPinCode">
+														</div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="text" class="form-control"
+																placeholder="Marital Status" name="maritalStatus">
+														</div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<input type="text" class="form-control"
+																placeholder="Permanent Address" name="permanentAddress">
+														</div>
+													</section>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary">
+															<div class="col-xs-4">
+																<button type="submit"
+																	class="btn btn-primary btn-block btn-flat">Save</button>
+															</div>
+														</div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary"></div>
+													</section>
+												</div>
+												<div class="col">
+													<section class="card">
+														<div class="card-body text-secondary"></div>
+													</section>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- section__content -->
+			</div>
+			<!-- main content end -->
+		</div>
+	</div>
+	<!-- 	Pagewrapper ends -->
+	<%@include file="footer.jsp"%>
 </body>
 </html>
-

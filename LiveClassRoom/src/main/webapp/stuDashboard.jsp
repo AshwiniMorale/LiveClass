@@ -10,9 +10,10 @@
 <body class="animsition">
 	<div class="page-wrapper">
 		<%@include file="header.jsp"%>
+		
 		<!-- PAGE CONTENT-->
 		<div class="page-content--bgf7">
-			<!-- BREADCRUMB-->
+			<!-- BREADCRUMB -->
 			<section class="au-breadcrumb2">
 				<div class="container">
 					<div class="row">
