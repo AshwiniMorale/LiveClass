@@ -49,9 +49,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- Main CSS-->
 <link href="css/theme.css" rel="stylesheet" media="all">
-
 </head>
-
 <body>
 	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 		<div class="container-fluid">
@@ -71,6 +69,7 @@
 						<div class="card-header bg-primary">
 							<h3 class="text text-white text-center">SIGN -IN</h3>
 						</div>
+						<!-- Card Header -->
 						<div class="card-body">
 							<form action="login.htm" method="post" class="form-vertical">
 								<div class="row form-group">
@@ -105,7 +104,13 @@
 								</p>
 							</div>
 						</div>
+						<!-- Card-body end-->
+						<div align="center">
+								<span class="text text-white bg-danger">${message}</span>
+						</div>
+						<!-- Card Footer -->
 					</div>
+					<!-- Card end -->
 				</div>
 			</div>
 		</div>

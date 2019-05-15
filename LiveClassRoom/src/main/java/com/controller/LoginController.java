@@ -35,6 +35,9 @@ public class LoginController {
 	@Autowired
 	LogDao logDaoImpl;
 
+	static final String MESSAGE = "message";
+	static final String LOGIN = "login";
+	ResourceBundle rb = ResourceBundle.getBundle("application");
 	LogDetails logDetails;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -46,14 +49,15 @@ public class LoginController {
 
 		if (saveimpl.checkUser(userDetail.getEmailId(), userDetail.getMobileNo())) {
 			System.out.println("LoginController::checkUser() returned with true.");
-			return new ModelAndView("register", "message", "sorry email id  is alredy presesnt ");
+			return new ModelAndView("register", MESSAGE, "sorry email id  is alredy presesnt ");
 
 		} else {
 			System.out.println("LoginController::checkUser() returned with false.");
-			ResourceBundle rb = ResourceBundle.getBundle("application");
+//			ResourceBundle rb = ResourceBundle.getBundle("application");
 			saveimpl.register(userDetail);
 
 			// Reading Data From Properties File...
+			String msgSuccess = rb.getString("msgSuccess");
 			String from = rb.getString("fromEmail");
 			String password = rb.getString("password");
 			String to = userDetail.getEmailId();
@@ -65,14 +69,14 @@ public class LoginController {
 			// Send Message to User:
 			SendEmail.send(from, password, to, sub, msg);
 			SendMessage.sendMsg(mobileNo, msg);
-			return new ModelAndView("login", "message", "Congrats you have suceessfully registered.");
+			return new ModelAndView(LOGIN, MESSAGE, msgSuccess);
 		}
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: login() Controller called.");
-
+		String msgDenied = rb.getString("msgDenied");
 		String emailId = req.getParameter("emailId");
 		String password = req.getParameter("password");
 
@@ -120,14 +124,14 @@ public class LoginController {
 			else
 				return new ModelAndView("UserPersonalDetails");
 		} else
-			return new ModelAndView("login", "message", "login denied");
+			return new ModelAndView(LOGIN, MESSAGE, msgDenied);
 
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logOut(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: logOut() Controller called.");
-
+		String msgLogout = rb.getString("msgLogout");
 		HttpSession httpSession = req.getSession();
 
 		if (!httpSession.isNew()) {
@@ -140,7 +144,7 @@ public class LoginController {
 		httpSession.setAttribute("roleId", null);
 		httpSession.setAttribute("userName", null);
 		httpSession.setAttribute("emailId", null);
-		return new ModelAndView("login", "message", "login out Successfully...");
+		return new ModelAndView(LOGIN, MESSAGE, msgLogout);
 	}
 
 	@RequestMapping(value = "/forget", method = RequestMethod.POST)
@@ -154,16 +158,15 @@ public class LoginController {
 			password = ob.getPassword();
 		}
 		if (password.equals(null))
-			return new ModelAndView("forgetpass", "message", "Please Enter Valid Email Id...");
+			return new ModelAndView("forgetpass", MESSAGE, "Please Enter Valid Email Id...");
 		else {
-			ResourceBundle rb = ResourceBundle.getBundle("config");
 			String from = rb.getString("fromEmail");
 			String mailpassword = rb.getString("password");
 			String sub = rb.getString("pfSubject");
-			String msg = "Your Password is:--> " + password;
+			String msgpass = "Your Password is:--> " + password;
 
-			SendEmail.send(from, mailpassword, emailId, sub, msg);
-			return new ModelAndView("forgetpass", "message", "A mail has been Sent to Your registerd Email Id...");
+			SendEmail.send(from, mailpassword, emailId, sub, msgpass);
+			return new ModelAndView("forgetpass", MESSAGE, "A mail has been Sent to Your registerd Email Id...");
 		}
 
 	}
