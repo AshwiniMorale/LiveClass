@@ -112,9 +112,9 @@ public class LoginController {
 			boolean usrStatus = logDaoImpl.returnLogDetails(userId);
 			logDaoImpl.saveLogDetails(logDetails);
 			if (roleId == 1)
-				return new ModelAndView("adminDashBoard");
+				return new ModelAndView("adminDashboard");
 			else if (roleId == 2)
-				return new ModelAndView("FacDeshBoard");
+				return new ModelAndView("facultyDashboard");
 			else if (usrStatus)
 				return new ModelAndView("stuDashboard");
 			else
@@ -124,10 +124,22 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/loginout", method = RequestMethod.POST)
-	public ModelAndView loginOut(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("Registration:: loginOut() Controller called.");
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logOut(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("Registration:: logOut() Controller called.");
 
+		HttpSession httpSession = req.getSession();
+
+		if (!httpSession.isNew()) {
+			httpSession.invalidate();
+			httpSession = req.getSession();
+			httpSession.setMaxInactiveInterval(0);
+		}
+
+		httpSession.setAttribute("userId", null);
+		httpSession.setAttribute("roleId", null);
+		httpSession.setAttribute("userName", null);
+		httpSession.setAttribute("emailId", null);
 		return new ModelAndView("login", "message", "login out Successfully...");
 	}
 
