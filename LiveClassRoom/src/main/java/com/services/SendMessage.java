@@ -40,6 +40,7 @@ public class SendMessage
 
          //final string
          mainUrl = sbPostData.toString();
+         System.out.println(mainUrl);
          try
          {
              //prepare connection

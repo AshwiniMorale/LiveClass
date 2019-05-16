@@ -12,8 +12,8 @@
 <body>
 	<sql:setDataSource var="connectionDS"
 		driver="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/liveclassroom" 
-		user="root"
+		url="jdbc:mysql://192.168.0.110:3306/liveclassroom" 
+		user="prince"
 		password="root" />
 	<c:set var="connectionDS" scope="request" />
 </body>
