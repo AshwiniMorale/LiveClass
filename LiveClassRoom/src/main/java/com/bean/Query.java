@@ -2,8 +2,8 @@ package com.bean;
 
 import javax.persistence.*;
 
-@Table
 @Entity
+@Table(name = "tbl_query")
 public class Query {
 
 	@Id

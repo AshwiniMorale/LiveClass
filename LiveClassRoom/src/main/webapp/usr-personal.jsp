@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>:: Dashboard ::</title>
+<title>:: Profile ::</title>
 <%@include file="links.jsp"%>
 </head>
 <body class="animsition">
@@ -20,9 +20,9 @@
 								<div class="au-breadcrumb-left">
 									<span class="au-breadcrumb-span">You are here:</span>
 									<ul class="list-unstyled list-inline au-breadcrumb__list">
-										<li class="list-inline-item active"><a href="#">Home</a></li>
+										<li class="list-inline-item active"><a href="#">Registration</a></li>
 										<li class="list-inline-item seprate"><span>/</span></li>
-										<li class="list-inline-item">Dashboard</li>
+										<li class="list-inline-item">Profile</li>
 									</ul>
 								</div>
 							</div>
@@ -34,14 +34,14 @@
 			<div class="container-flude bg-white">
 				<div class="main-containt">
 					<div class="section__content section__content--p30">
-						<form action="UserPersonalDetails.htm" method="post">
+						<form action="saveuserpersonal.htm" method="post">
 							<div class="row">
 								<div class="col-md-12" style="height: 500px">
 									<div class="card border border-primary">
 										<div class="card-header bg-info">
 											<strong class="card-title text-white">Profile</strong>
 										</div>
-										<div class="card-body">
+										<div class="card-body" style="height: 300px">
 											<div class="row">
 												<div class="col">
 													<section class="card">
@@ -52,19 +52,27 @@
 														</div>
 													</section>
 												</div>
-												<div class="col">
+												<div class="col ">
 													<section class="card">
 														<div class="card-body text-secondary">
-															<input type="text" class="form-control"
-																placeholder="Gender" name="gender">
+															<select name="gender" class="form-control">
+																<option disabled="disabled" selected="selected">Select
+																	Gender</option>
+																<option value="Male">Male</option>
+																<option value="Female">Female</option>
+															</select>
 														</div>
 													</section>
 												</div>
 												<div class="col">
 													<section class="card">
 														<div class="card-body text-secondary">
-															<input type="text" class="form-control"
-																placeholder="Hometown" name="hometown">
+															<select name="maritalStatus" class="form-control">
+																<option disabled="disabled" selected="selected">Select
+																	Marital Status</option>
+																<option value="Married">Married</option>
+																<option value="Unmarried">Unmarried</option>
+															</select>
 														</div>
 													</section>
 												</div>
@@ -82,7 +90,7 @@
 													<section class="card">
 														<div class="card-body text-secondary">
 															<input type="text" class="form-control"
-																placeholder="Marital Status" name="maritalStatus">
+																placeholder="Hometown" name="hometown">
 														</div>
 													</section>
 												</div>
@@ -95,30 +103,28 @@
 													</section>
 												</div>
 											</div>
-											<div class="row">
-												<div class="col">
-													<section class="card">
-														<div class="card-body text-secondary">
-															<div class="col-xs-4">
-																<button type="submit"
-																	class="btn btn-primary btn-block btn-flat">Save</button>
-															</div>
-														</div>
-													</section>
-												</div>
-												<div class="col">
-													<section class="card">
-														<div class="card-body text-secondary"></div>
-													</section>
-												</div>
-												<div class="col">
-													<section class="card">
-														<div class="card-body text-secondary"></div>
-													</section>
+											<!-- row ends -->
+										</div>
+										<!-- card-body ends -->
+										<div class="card-footer bg-white">
+										<div class="row">
+										<div class="col col-8">
+												<div class="text-secondary">
+												<span>${message }</span>
 												</div>
 											</div>
+										<div class="col col-4">
+												<div class="text-secondary">
+													<button type="submit"
+														class="btn btn-primary btn-block btn-flat">Save</button>
+												</div>
+											</div>
+										
+										</div>
+											
 										</div>
 									</div>
+									<!-- card ends -->
 								</div>
 							</div>
 						</form>

@@ -4,7 +4,7 @@ import com.bean.LogDetails;
 
 public interface LogDao {
 
-	void saveLogDetails(LogDetails logDetails);
+	int saveLogDetails(LogDetails logDetails);
+	void updateLog (int logId);
 
-	boolean returnLogDetails(int userId);
 }

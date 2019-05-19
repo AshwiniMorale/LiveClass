@@ -2,11 +2,12 @@ package com.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bean.UserEducationalDetails;
@@ -19,127 +20,152 @@ import com.daoImpl.UserProfessionalDetailsImpl;
 @Controller
 public class CompleteProfileController {
 
-	int userId=0;
-	UserPersonalDetailsImpl userPersonalDetailsImpl=new UserPersonalDetailsImpl();
-	UserEducationalDetailsImpl userEducationalDetailsImpl= new UserEducationalDetailsImpl();
-	UserProfessionalDetailsImpl userProfessionalDetailsImpl= new UserProfessionalDetailsImpl();
+	int userId = 0;
+	static final String MESSAGE = "message";
 
-	
-	//Methods Of UserPersonalDetailsImpl is being called:
-	
-	@RequestMapping(value = "/UserPersonalDetails", method = RequestMethod.POST)
-	public ModelAndView saveUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
+	@Autowired
+	UserPersonalDetailsImpl userPersonalDetailsImpl;
+	@Autowired
+	UserEducationalDetailsImpl userEducationalDetailsImpl;
+	@Autowired
+	UserProfessionalDetailsImpl userProfessionalDetailsImpl;
+
+	@PostMapping("/saveuserpersonal")
+	public ModelAndView saveUserPersonalDetails(
+			@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req,
+			HttpServletResponse res) {
+		System.out.println(":: saveUserPersonalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		System.out.println("userId from sessiom:-->" + userId);
+		userPersonalDetails.setUserId(userId);
 		userPersonalDetailsImpl.saveUserPersonalDetails(userPersonalDetails);
-		System.out.println("saveUserPersonalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserEducationalDetails", "message", "Your Personal Details have been saved successfully");
-		
+		return new ModelAndView("usr-educational", MESSAGE, "Your Personal Details have been saved successfully");
 	}
-	
 
-	@RequestMapping(value = "/readUserPersonalDetails", method = RequestMethod.POST)
-	public ModelAndView readUserPersonalDetails(HttpServletRequest req, HttpServletResponse res)
-	{
+	@PostMapping("/readuserpersonal")
+	public ModelAndView readUserPersonalDetails(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: readUserPersonalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
 		userPersonalDetailsImpl.readUserPersonalDetails(userId);
-		System.out.println("readUserPersonalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserEducationalDetails", "message", "Your Personal Details have been saved successfully");
-		
+		return new ModelAndView("#", MESSAGE, "Your Personal Details have been saved successfully");
 	}
-	
-	@RequestMapping(value = "/updateUserPersonalDetails", method = RequestMethod.POST)
-	public ModelAndView updateUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails, userId);
-		System.out.println("updateUserPersonalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserEducationalDetails", "message", "Your Personal Details have been saved successfully");
-		
+
+	@PostMapping("/updateuserpersonal")
+	public ModelAndView updateUserPersonalDetails(
+			@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req,
+			HttpServletResponse res) {
+		System.out.println(":: updateUserPersonalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userPersonalDetails.setUserId(userId);
+		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails);
+		return new ModelAndView("#", MESSAGE, "Your Personal Details have been saved successfully");
 	}
-	
-	@RequestMapping(value = "/deleteUserPersonalDetails", method = RequestMethod.POST)
-	public ModelAndView deleteUserPersonalDetails(@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails, userId);
-		System.out.println("updateUserPersonalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserEducationalDetails", "message", "Your Personal Details have been saved successfully");
-		
+
+	@PostMapping("/deleteuserpersonal")
+	public ModelAndView deleteUserPersonalDetails(
+			@ModelAttribute("UserPersonalDetails") UserPersonalDetails userPersonalDetails, HttpServletRequest req,
+			HttpServletResponse res) {
+		System.out.println(":: deleteUserPersonalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userPersonalDetails.setUserId(userId);
+		userPersonalDetailsImpl.updateUserPersonalDetails(userPersonalDetails);
+		return new ModelAndView("#", MESSAGE, "Your Personal Details have been saved successfully");
 	}
-	
-	
-	//Methods Of UserEducationalDetailsImpl is being called:
-	
-    @RequestMapping(value = "/UserEducationalDetails", method = RequestMethod.POST)
-	public ModelAndView saveUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
+
+	@PostMapping("/saveusereducational")
+	public ModelAndView saveUserEducationalDetails(
+			@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: saveUserEducationalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userEducationalDetails.setUserId(userId);
 		userEducationalDetailsImpl.saveUserEducationalDetails(userEducationalDetails);
-		System.out.println("saveUserEducationalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Educational Details have been saved successfully");
-		
+		return new ModelAndView("usr-professional", MESSAGE, "Your Educational Details have been saved successfully");
 	}
-	
-	@RequestMapping(value = "/readUserEducationalDetails", method = RequestMethod.POST)
-	public ModelAndView readUserEducationalDetails(HttpServletRequest req, HttpServletResponse res)
-	{
+
+	@PostMapping("/readusereducationalDetails")
+	public ModelAndView readUserEducationalDetails(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: readUserEducationalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
 		userEducationalDetailsImpl.readUserEducationalDetails(userId);
-		System.out.println("readUserEducationalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Educational Details have been saved successfully");
-		
+		return new ModelAndView("#", MESSAGE, "Your Educational Details have been saved successfully");
 	}
-	
-	
-	@RequestMapping(value = "/updateUserEducationalDetails", method = RequestMethod.POST)
-	public ModelAndView updateUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userEducationalDetailsImpl.updateUserEducationalDetails(userEducationalDetails,userId);
-		System.out.println("updateUserEducationalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Educational Details have been saved successfully");
-		
+
+	@PostMapping("/updateusereducational")
+	public ModelAndView updateUserEducationalDetails(
+			@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: updateUserEducationalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userEducationalDetails.setUserId(userId);
+		userEducationalDetailsImpl.updateUserEducationalDetails(userEducationalDetails);
+		return new ModelAndView("#", MESSAGE, "Your Educational Details have been saved successfully");
 	}
-	@RequestMapping(value = "/deleteUserEducationalDetails", method = RequestMethod.POST)
-	public ModelAndView deleteUserEducationalDetails(@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userEducationalDetailsImpl.deleteUserEducationalDetails(userEducationalDetails, userId);
-		System.out.println("saveUserEducationalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Educational Details have been saved successfully");
-		
+
+	@PostMapping("/deleteusereducational")
+	public ModelAndView deleteUserEducationalDetails(
+			@ModelAttribute("UserEducationalDetails") UserEducationalDetails userEducationalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: deleteUserEducationalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userEducationalDetails.setUserId(userId);
+		userEducationalDetailsImpl.deleteUserEducationalDetails(userEducationalDetails);
+		return new ModelAndView("UserProfessionalDetails", "message",
+				"Your Educational Details have been saved successfully");
+
 	}
-	
-	
-	//Methods Of UserProfessionalDetailsImpl is being called:
-	
-	@RequestMapping(value = "/UserProfessionalDetails", method = RequestMethod.POST)
-	public ModelAndView saveUserProfessionalDetails(@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
+
+	@PostMapping("/saveuserprofessional")
+	public ModelAndView saveUserProfessionalDetails(
+			@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: saveUserProfessionalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userProfessionalDetails.setUserId(userId);
 		userProfessionalDetailsImpl.saveUserProfessionalDetails(userProfessionalDetails);
-		System.out.println("saveUserProfessionalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Professional Details have been saved successfully");
-		
+		return new ModelAndView("login", MESSAGE, "Your Professional Details have been saved successfully");
+
 	}
-	
-	@RequestMapping(value = "/readUserProfessionalDetails", method = RequestMethod.POST)
-	public ModelAndView readUserProfessionalDetails(HttpServletRequest req, HttpServletResponse res)
-	{
+
+	@PostMapping("/readuserprofessional")
+	public ModelAndView readUserProfessionalDetails(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: readUserProfessionalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
 		userProfessionalDetailsImpl.readUserProfessionalDetails(userId);
-		System.out.println("readUserProfessionalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Professional Details have been saved successfully");
-		
+		return new ModelAndView("#", MESSAGE, "Your Professional Details have been saved successfully");
 	}
-	
-	@RequestMapping(value = "/updateUserProfessionalDetails", method = RequestMethod.POST)
-	public ModelAndView updateUserProfessionalDetails(@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userProfessionalDetailsImpl.updateUserProfessionalDetails(userProfessionalDetails, userId);
-		System.out.println("updateUserProfessionalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Professional Details have been saved successfully");
-		
+
+	@PostMapping("/updateuserprofessional")
+	public ModelAndView updateUserProfessionalDetails(
+			@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: updateUserProfessionalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userProfessionalDetails.setUserId(userId);
+		userProfessionalDetailsImpl.updateUserProfessionalDetails(userProfessionalDetails);
+		return new ModelAndView("#", MESSAGE, "Your Professional Details have been saved successfully");
 	}
-	
-	@RequestMapping(value = "/deleteUserProfessionalDetails", method = RequestMethod.POST)
-	public ModelAndView deleteUserProfessionalDetails(@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails, HttpServletRequest req, HttpServletResponse res)
-	{
-		userProfessionalDetailsImpl.deleteUserProfessionalDetails(userProfessionalDetails, userId);
-		System.out.println("deleteUserProfessionalDetails:: CompleteProfile controller called.");
-		return new ModelAndView("UserProfessionalDetails", "message", "Your Professional Details have been saved successfully");
-		
+
+	@PostMapping("/deleteserrofessional")
+	public ModelAndView deleteUserProfessionalDetails(
+			@ModelAttribute("UserProfessionalDetails") UserProfessionalDetails userProfessionalDetails,
+			HttpServletRequest req, HttpServletResponse res) {
+		System.out.println(":: deleteUserProfessionalDetails() called:-->CompleteProfileController");
+		HttpSession httpSession = req.getSession();
+		userId = (int) httpSession.getAttribute("userId");
+		userProfessionalDetails.setUserId(userId);
+		userProfessionalDetailsImpl.deleteUserProfessionalDetails(userProfessionalDetails);
+		return new ModelAndView("#", MESSAGE, "Your Professional Details have been saved successfully");
 	}
-	
 }

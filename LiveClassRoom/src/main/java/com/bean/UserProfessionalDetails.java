@@ -3,36 +3,83 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "tbl_usr_prof_det")
 public class UserProfessionalDetails {
 
-	 @Id
-	 @GeneratedValue
-	 private int userProfessionalId;
-	 @Column
-	 private int userId;
-	 @Column
-	 private String ResumeHeadline;
-	 
-	 @Column
-	 private String ProfileSummary;
-	 
-	 @Column
-	 private String KeySkills;
-	 
-	 
-	 
-	 public int getUserProfessionalId() {
-		return userProfessionalId;
+	@Id
+	@GeneratedValue
+	@Column
+	private int usrProfId;
+	
+	@Column
+	private int userId;
+	
+	@Column
+	private String resumeHeadline;
+
+	@Column
+	private String profileSummary;
+
+	@Column
+	private String keySkills;
+	
+	@Column
+	private String employment;
+
+	@Column
+	private String projects;
+
+	public int getUsrProfId() {
+		return usrProfId;
 	}
 
-	public void setUserProfessionalId(int userProfessionalId) {
-		this.userProfessionalId = userProfessionalId;
+	public void setUsrProfId(int usrProfId) {
+		this.usrProfId = usrProfId;
+	}
+
+	public String getResumeHeadline() {
+		return resumeHeadline;
+	}
+
+	public void setResumeHeadline(String resumeHeadline) {
+		this.resumeHeadline = resumeHeadline;
+	}
+
+	public String getProfileSummary() {
+		return profileSummary;
+	}
+
+	public void setProfileSummary(String profileSummary) {
+		this.profileSummary = profileSummary;
+	}
+
+	public String getKeySkills() {
+		return keySkills;
+	}
+
+	public void setKeySkills(String keySkills) {
+		this.keySkills = keySkills;
+	}
+
+	public String getEmployment() {
+		return employment;
+	}
+
+	public void setEmployment(String employment) {
+		this.employment = employment;
+	}
+
+	public String getProjects() {
+		return projects;
+	}
+
+	public void setProjects(String projects) {
+		this.projects = projects;
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)
-   	 @JoinColumn(name = "userId")
-	 public int getUserId() {
+	@JoinColumn(name = "userId")
+	public int getUserId() {
 		return userId;
 	}
 
@@ -40,49 +87,4 @@ public class UserProfessionalDetails {
 		this.userId = userId;
 	}
 
-	public String getResumeHeadline() {
-		return ResumeHeadline;
-	}
-
-	public void setResumeHeadline(String resumeHeadline) {
-		ResumeHeadline = resumeHeadline;
-	}
-
-	public String getProfileSummary() {
-		return ProfileSummary;
-	}
-
-	public void setProfileSummary(String profileSummary) {
-		ProfileSummary = profileSummary;
-	}
-
-	public String getKeySkills() {
-		return KeySkills;
-	}
-
-	public void setKeySkills(String keySkills) {
-		KeySkills = keySkills;
-	}
-
-	public String getEmployment() {
-		return Employment;
-	}
-
-	public void setEmployment(String employment) {
-		Employment = employment;
-	}
-
-	public String getProjects() {
-		return Projects;
-	}
-
-	public void setProjects(String projects) {
-		Projects = projects;
-	}
-
-	@Column
-	 private String Employment;
-	 
-	 @Column
-	 private String Projects;
 }

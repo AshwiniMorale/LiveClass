@@ -9,8 +9,8 @@ public interface UserPersonalDetailsDao {
 	
 	public List<UserPersonalDetails> readUserPersonalDetails(int userId);
 	
-	public void updateUserPersonalDetails(UserPersonalDetails userPersonalDetails, int userId);
+	public void updateUserPersonalDetails(UserPersonalDetails userPersonalDetails);
 	
-	public void deleteUserPersonalDetails(UserPersonalDetails userPersonalDetails, int userId);
+	public void deleteUserPersonalDetails(UserPersonalDetails userPersonalDetails);
 	
 }

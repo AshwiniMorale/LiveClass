@@ -40,8 +40,8 @@
 								Integer userId = (Integer) session.getAttribute("userId");
 							%>
 							<sql:query var="listStud" dataSource="${connectionDS}">
-        						SELECT * FROM userdetails u,userpersonaldetails p
-								WHERE u.userid=<%=userId%> AND p.userid=<%=userId%>;
+        						SELECT * FROM tbl_users u,tbl_usr_pers_det upd
+								WHERE u.userid=<%=userId%> AND upd.userid=<%=userId%>;
     						</sql:query>
 							<div class="col-md-12" style="height: 500px">
 								<div class="card border border-primary">

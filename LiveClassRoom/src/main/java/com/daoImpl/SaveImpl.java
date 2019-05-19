@@ -13,33 +13,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class SaveImpl implements SaveDao {
 
-	public void register(UserDetails userDetails) {
-		System.out.println("SaveImpl::register() called.");
+	SessionFactory factory;
+	Session session;
+	Transaction tx;
+	static final String HQLCHECK1 = "FROM UserDetails WHERE emailId = ? AND password = ?";
+	static final String HQLCHECK2 = "FROM UserDetails WHERE emailId = ? OR mobileNo = ?";
+	static final String HQLCHECKEMAIL = "FROM UserDetails WHERE emailId = ? ";
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin");
+	public void startTransaction() {
+		factory = HibernateUtil.getSessionFactory();
+		session = factory.openSession();
+		tx = session.beginTransaction();
+		System.out.println("Transection Begin...");
+	}
 
-		session.save(userDetails);
-		System.out.println("Object saved successfully...");
-
+	public int register(UserDetails userDetails) {
+		System.out.println("register() called:-->SaveImpl");
+		startTransaction();
+		int userId = (int) session.save(userDetails);
+		System.out.println("Object saved successfully..." + userId);
 		tx.commit();
 		session.close();
+		return userId;
 	}
 
 	@SuppressWarnings("unchecked")
 	public boolean checkUser(String emailId, String mobileNo) {
-		System.out.println("SaveImpl::checkUser() called.");
+		System.out.println("checkUser() called:-->SaveImpl");
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin");
-
+		startTransaction();
 		// System.out.println(userDetails.getEmailId());
-		String hql = "FROM UserDetails WHERE EMAILID=? OR MOBILENO=?";
-		Query q = session.createQuery(hql);
+
+		Query q = session.createQuery(HQLCHECK2);
 		q.setParameter(0, emailId);
 		q.setParameter(1, mobileNo);
 		tx.commit();
@@ -53,18 +58,14 @@ public class SaveImpl implements SaveDao {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<UserDetails> login(String emailId, String password) {
 
-		System.out.println("SaveImpl::login() called.");
+		System.out.println("login() called:-->SaveImpl");
 		List<UserDetails> list = null;
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin");
-
-		String hql = "FROM UserDetails " + " WHERE emailId = ? " + "AND password = ?";
-		Query query = session.createQuery(hql);
+		startTransaction();
+		Query query = session.createQuery(HQLCHECK1);
 		query.setParameter(0, emailId);
 		query.setParameter(1, password);
 		list = query.list();
@@ -74,17 +75,13 @@ public class SaveImpl implements SaveDao {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<UserDetails> forgetPassword(String emailId) {
-		System.out.println("SaveImpl::forgetPassword() called.");
+		System.out.println("forgetPassword() called:-->SaveImpl");
 		List<UserDetails> list = null;
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("SaveImpl::forgetPassword()::Transection Begin");
-
-		String hql = "FROM UserDetails " + " WHERE emailId = ? ";
-		Query query = session.createQuery(hql);
+		startTransaction();
+		Query query = session.createQuery(HQLCHECKEMAIL);
 		query.setParameter(0, emailId);
 		list = query.list();
 		tx.commit();

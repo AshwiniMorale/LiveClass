@@ -15,33 +15,35 @@ import com.dao.UserEducationalDetailsDao;
 @Service
 public class UserEducationalDetailsImpl implements UserEducationalDetailsDao{
 
+	SessionFactory factory;
+	Session session;
+	Transaction tx;
+	static final String HQL = "FROM UserEducationalDetails WHERE userId=?";
+	
+	public void getTransection() {
+		factory=HibernateUtil.getSessionFactory();
+		session=factory.openSession();
+		tx=session.beginTransaction();
+		System.out.println("Transection Begin:-->UserProfessionalDetailsImpl");
+	}
+	
 	public void saveUserEducationalDetails(UserEducationalDetails userEducationalDetails) {
 		System.out.println("CompleteProfileImpl::saveUserEducationalDetails() called.");
 
-		SessionFactory factory=HibernateUtil.getSessionFactory();
-		Session session=factory.openSession();
-		Transaction tx=session.beginTransaction();
-		System.out.println("Transection Begin");
-		
+		getTransection();
 		session.save(userEducationalDetails);
 		System.out.println("Object saved successfuly");
 		tx.commit();
 		session.close();
-		
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<UserEducationalDetails> readUserEducationalDetails(int userId) {
-
 		System.out.println("CompleteProfileImpl::saveUserEducationalDetails() called.");
 		List<UserEducationalDetails> list=new ArrayList<UserEducationalDetails>();
-		SessionFactory factory=HibernateUtil.getSessionFactory();
-		Session session=factory.openSession();
-		Transaction tx=session.beginTransaction();
-		System.out.println("Transection Begin");
-		
-		String hql = "FROM UserEducationalDetails WHERE userId=?";
-		Query query = session.createQuery(hql);
+
+		getTransection();
+		Query query = session.createQuery(HQL);
 		query.setParameter(0, userId);
 		list = query.list();
 		for(UserEducationalDetails userEducationalDetailsob:list)
@@ -50,34 +52,21 @@ public class UserEducationalDetailsImpl implements UserEducationalDetailsDao{
 		return list;
 	}
 
-	public void updateUserEducationalDetails(UserEducationalDetails userEducationalDetails, int userId) {
-		
+	public void updateUserEducationalDetails(UserEducationalDetails userEducationalDetails) {
 		System.out.println("CompleteProfileImpl::updateUserEducationalDetails() called.");
 
-		SessionFactory factory=HibernateUtil.getSessionFactory();
-		Session session=factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin");
-		userEducationalDetails.setUserId(userId);
+		getTransection();
 		session.update(userEducationalDetails);
 		tx.commit();
 		session.close();
-		
 	}
 
-	public void deleteUserEducationalDetails(UserEducationalDetails userEducationalDetails, int userId) {
-		
+	public void deleteUserEducationalDetails(UserEducationalDetails userEducationalDetails) {
 		System.out.println("CompleteProfileImpl::deleteUserEducationalDetails() called.");
 
-		SessionFactory factory=HibernateUtil.getSessionFactory();
-		Session session=factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin");
-		userEducationalDetails.setUserId(userId);
+		getTransection();
 		session.delete(userEducationalDetails);
 		tx.commit();
 		session.close();
-		
 	}
-
 }

@@ -1,10 +1,5 @@
 package com.daoImpl;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,43 +11,42 @@ import com.dao.LogDao;
 @Service
 public class LogDaoImpl implements LogDao {
 
-	private static final String hql = "FROM LogDetails WHERE userId=?";
+	SessionFactory factory;
+	Session session;
+	Transaction tx;
+
+	public void getTransection() {
+		factory = HibernateUtil.getSessionFactory();
+		session = factory.openSession();
+		tx = session.beginTransaction();
+		System.out.println("Transection Begin:-->LogDaoImpl");
+	}
 
 	@Override
-	public void saveLogDetails(LogDetails logDetails) {
+	public int saveLogDetails(LogDetails logDetails) {
 		System.out.println("LogDaoImpl::saveLogDtails() called.");
+		int logId = 0;
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin...In saveLogDetails().");
-		session.save(logDetails);
+		getTransection();
+		logId = (int) session.save(logDetails);
 		System.out.println("Object saved successfully...");
 
 		tx.commit();
 		session.close();
+		return logId;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public boolean returnLogDetails(int userId) {
-		System.out.println("LogDaoImpl::returnLogDetails() called.");
-		List<LogDetails> listLogDetails = new ArrayList<LogDetails>();
+	public void updateLog(int logId) {
+		System.out.println("LogDaoImpl::updateLog() called.");
+		LogDetails logDetails = new LogDetails();
 
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-		System.out.println("Transection Begin...In returnLogDetails().");
+		logDetails.setLogId(logId);
+		getTransection();
+		session.update(logDetails);
+		System.out.println("Object saved successfully...");
 
-		Query q = session.createQuery(hql);
-		q.setParameter(0, userId);
 		tx.commit();
-		listLogDetails = q.list();
-		session.close();
-		Iterator<LogDetails> itr = listLogDetails.iterator();
-		if (itr.hasNext())
-			return true;
-		else
-			return false;
+		session.close();	
 	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "tbl_logdetails")
 public class LogDetails 
 {
 	@Id

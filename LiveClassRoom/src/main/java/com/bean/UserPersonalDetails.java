@@ -3,12 +3,13 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "tbl_usr_pers_det")
 public class UserPersonalDetails {
 
 	@Id
 	@GeneratedValue
-	private int userPersonalId;
+	@Column
+	private int usrPersId;
 	@Column
 	private String dob;
 	@Column
@@ -24,12 +25,12 @@ public class UserPersonalDetails {
 	@Column
 	private int userId;
 
-	public int getUserPersonalId() {
-		return userPersonalId;
+	public int getUsrPersId() {
+		return usrPersId;
 	}
 
-	public void setUserPersonalId(int userPersonalId) {
-		this.userPersonalId = userPersonalId;
+	public void setUsrPersId(int usrPersId) {
+		this.usrPersId = usrPersId;
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)

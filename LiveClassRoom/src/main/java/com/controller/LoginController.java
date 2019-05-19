@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bean.LogDetails;
@@ -26,63 +24,78 @@ import com.services.SendMessage;
 @Controller
 public class LoginController {
 
-	LoginController() {
-		System.out.println("Constroctur:");
-	}
-
 	@Autowired
 	SaveDao saveimpl;
 
 	@Autowired
 	LogDao logDaoImpl;
 
+	static String MSGSUCCESS;
+	static String MSGDENIED;
+	static String MSGLOGOUT;
+	static String REGSUBJECT;
+	static String MSGEMAIL;
+	static String FORGETPASSSUB;
+	static String MSGFORGETPASS;
+	static String FROMMAIL;
+	static String FROMPASS;
 	static final String MESSAGE = "message";
 	static final String LOGIN = "login";
-	ResourceBundle rb = ResourceBundle.getBundle("application");
+	
+	ResourceBundle rb;
 	LogDetails logDetails;
 
-	@PostMapping(value = "/register")
+	LoginController() {
+		System.out.println("Constroctur():-->LoginController.class");
+		rb = ResourceBundle.getBundle("application");
+		MSGSUCCESS = rb.getString("msgSuccess");
+		MSGDENIED = rb.getString("msgDenied");
+		MSGLOGOUT = rb.getString("msgLogout");
+		REGSUBJECT = rb.getString("regSubject");
+		MSGEMAIL = rb.getString("msgEmail");
+		FORGETPASSSUB = rb.getString("forgetPassSub");
+		MSGFORGETPASS = rb.getString("msgForgetPass");
+		FROMMAIL = rb.getString("fromEmail");
+		FROMPASS = rb.getString("password");
+	}
+
+	@PostMapping("/register")
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
 			HttpServletResponse res) {
 
 		System.out.println("Registration:: register() Controller called.");
-		System.out.println(userDetail.getEmailId() + " " + userDetail.getMobileNo());
-
+		// Reading Data From Object File...
+		String to = userDetail.getEmailId();
+		String mobileNo = userDetail.getMobileNo();
+		
 		if (saveimpl.checkUser(userDetail.getEmailId(), userDetail.getMobileNo())) {
 			System.out.println("LoginController::checkUser() returned with true.");
-			return new ModelAndView("register", MESSAGE, "sorry email id  is alredy presesnt ");
+			return new ModelAndView("register", MESSAGE, "Sorry email id  is alredy presesnt ");
 
 		} else {
 			System.out.println("LoginController::checkUser() returned with false.");
-//			ResourceBundle rb = ResourceBundle.getBundle("application");
-			saveimpl.register(userDetail);
-
-			// Reading Data From Properties File...
-			String msgSuccess = rb.getString("msgSuccess");
-			String from = rb.getString("fromEmail");
-			String password = rb.getString("password");
-			String to = userDetail.getEmailId();
-			String sub = rb.getString("subject");
-			String mobileNo = userDetail.getMobileNo();
-			String msg = rb.getString("hello") + " " + userDetail.getFirstName() + "," + "\n" + rb.getString("msg");
-			System.out.println(from + "\n" + password + "\n" + to + "\n" + sub + "\n" + mobileNo);
-			System.out.println("msg From Properties File: " + msg);
+			int userId=saveimpl.register(userDetail);
+			HttpSession session = req.getSession();
+			session.setAttribute("userId", userId);
+			MSGEMAIL = "Hello " + userDetail.getFirstName() + "," + "\n\n\n" + MSGEMAIL;
+			System.out.println(
+					FROMMAIL + "\n" + FROMPASS + "\n" + to + "\n" + REGSUBJECT + "\n" + mobileNo + "\n" + MSGEMAIL);
 			// Send Message to User:
-			SendEmail.send(from, password, to, sub, msg);
-			SendMessage.sendMsg(mobileNo, msg);
-			return new ModelAndView(LOGIN, MESSAGE, msgSuccess);
+			SendEmail.send(FROMMAIL, FROMPASS, to, REGSUBJECT, MSGEMAIL);
+			SendMessage.sendMsg(mobileNo, MSGEMAIL);
+			return new ModelAndView("usr-personal", MESSAGE, MSGSUCCESS);
 		}
 	}
 
-	@PostMapping(value = "/login")
+	@PostMapping("/login")
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: login() Controller called.");
-		String msgDenied = rb.getString("msgDenied");
 		String emailId = req.getParameter("emailId");
 		String password = req.getParameter("password");
 
 		List<UserDetails> list = saveimpl.login(emailId, password);
 
+		int logId=0;
 		int userId = 0;
 		int roleId = 0;
 		String userName = null;
@@ -91,7 +104,7 @@ public class LoginController {
 
 		for (UserDetails ob : list) {
 			userId = ob.getUserId();
-			roleId = ob.getRole();
+			roleId = ob.getRoleId();
 			userName = ob.getFirstName() + " " + ob.getLastName();
 			dbEmail = ob.getEmailId();
 			status = true;
@@ -109,46 +122,46 @@ public class LoginController {
 				httpSession = req.getSession();
 				httpSession.setMaxInactiveInterval(0);
 			}
-
+			logId = logDaoImpl.saveLogDetails(logDetails);
 			httpSession.setAttribute("userId", userId);
 			httpSession.setAttribute("roleId", roleId);
 			httpSession.setAttribute("userName", userName);
 			httpSession.setAttribute("emailId", dbEmail);
-			boolean usrStatus = logDaoImpl.returnLogDetails(userId);
-			logDaoImpl.saveLogDetails(logDetails);
+			httpSession.setAttribute("logId", logId);
+			
 			if (roleId == 1)
 				return new ModelAndView("adminDashboard");
 			else if (roleId == 2)
 				return new ModelAndView("facultyDashboard");
-			else if (usrStatus)
-				return new ModelAndView("stuDashboard");
 			else
-				return new ModelAndView("UserPersonalDetails");
+				return new ModelAndView("stuDashboard");
 		} else
-			return new ModelAndView(LOGIN, MESSAGE, msgDenied);
+			return new ModelAndView(LOGIN, MESSAGE, MSGDENIED);
 
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@PostMapping("/logout")
 	public ModelAndView logOut(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: logOut() Controller called.");
-		String msgLogout = rb.getString("msgLogout");
 		HttpSession httpSession = req.getSession();
+		int logId = 0;
 
+		logId = (int) httpSession.getAttribute("logId");
+		logDaoImpl.updateLog(logId);
 		if (!httpSession.isNew()) {
 			httpSession.invalidate();
 			httpSession = req.getSession();
 			httpSession.setMaxInactiveInterval(0);
 		}
-
-		httpSession.setAttribute("userId", null);
-		httpSession.setAttribute("roleId", null);
-		httpSession.setAttribute("userName", null);
-		httpSession.setAttribute("emailId", null);
-		return new ModelAndView(LOGIN, MESSAGE, msgLogout);
+		httpSession.removeAttribute("logId");
+		httpSession.removeAttribute("userId");
+		httpSession.removeAttribute("roleId");
+		httpSession.removeAttribute("userName");
+		httpSession.removeAttribute("emailId");
+		return new ModelAndView(LOGIN, MESSAGE, MSGLOGOUT);
 	}
 
-	@RequestMapping(value = "/forget", method = RequestMethod.POST)
+	@PostMapping("/forget")
 	public ModelAndView forgetPass(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: forgetPass() Controller called.");
 		String emailId = req.getParameter("emailId");
@@ -163,7 +176,7 @@ public class LoginController {
 		else {
 			String from = rb.getString("fromEmail");
 			String mailpassword = rb.getString("password");
-			String sub = rb.getString("pfSubject");
+			String sub = rb.getString("forgetPassSub");
 			String msgpass = "Your Password is:--> " + password;
 
 			SendEmail.send(from, mailpassword, emailId, sub, msgpass);

@@ -10,8 +10,8 @@ public void saveUserEducationalDetails(UserEducationalDetails userEducationalDet
 	
 	public List<UserEducationalDetails> readUserEducationalDetails(int userId);
 	
-	public void updateUserEducationalDetails(UserEducationalDetails userEducationalDetails, int userId);
+	public void updateUserEducationalDetails(UserEducationalDetails userEducationalDetails);
 	
-	public void deleteUserEducationalDetails(UserEducationalDetails userEducationalDetails, int userId);
+	public void deleteUserEducationalDetails(UserEducationalDetails userEducationalDetails);
 		
 }

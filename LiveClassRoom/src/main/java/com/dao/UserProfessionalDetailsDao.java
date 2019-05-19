@@ -9,9 +9,9 @@ public interface UserProfessionalDetailsDao {
 	
 	public List<UserProfessionalDetails> readUserProfessionalDetails(int userId);
 	
-	public void updateUserProfessionalDetails(UserProfessionalDetails userProfessionalDetails, int userId);
+	public void updateUserProfessionalDetails(UserProfessionalDetails userProfessionalDetails);
 	
-	public void deleteUserProfessionalDetails(UserProfessionalDetails userProfessionalDetails, int userId);
+	public void deleteUserProfessionalDetails(UserProfessionalDetails userProfessionalDetails);
 	
 	
 }

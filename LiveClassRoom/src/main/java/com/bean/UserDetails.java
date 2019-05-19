@@ -3,7 +3,7 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "tbl_users")
 public class UserDetails 
 {
 	 @Id
@@ -20,7 +20,7 @@ public class UserDetails
 	 @Column
 	 private String mobileNo;
 	 @Column
-	 private int role=3;
+	 private int roleId=3;
 	 
 	public int getUserId() {
 		return userId;
@@ -62,11 +62,11 @@ public class UserDetails
 	//roleId
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "roleId")
-	public int getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
-	public void setRole(int role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 	 
 }

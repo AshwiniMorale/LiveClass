@@ -3,43 +3,49 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "tbl_usr_edu_det")
 public class UserEducationalDetails {
 
 	@Id
 	@GeneratedValue
-	private int educationId;
+	@Column
+	private int usreduId;
 	@Column
 	private int userId;
+	
 	@Column
-	private int XthPercentage;
-	@Column
-	private int XthYear;
+	private String XthStream;
 	@Column
 	private String XthBoard;
 	@Column
-	private int XIIthPercentage;
+	private int XthYear;
 	@Column
-	private int XIIthYear;
+	private int XthPercentage;
+	
+	@Column
+	private String XIIthStream;
 	@Column
 	private String XIIthBoard;
 	@Column
-	private String uG;
+	private int XIIthYear;
 	@Column
-	private String stream;
+	private int XIIthPercentage;
+	
 	@Column
-	private int uGMarks;
-	@Column
-	private int uGYear;
+	private String ugStream;
 	@Column
 	private String university;
-	public int getEducationId() {
-		return educationId;
-	}
-	public void setEducationId(int educationId) {
-		this.educationId = educationId;
-	}
+	@Column
+	private int ugYear;
+	@Column
+	private int ugPercentage;
 	
+	public int getUsreduId() {
+		return usreduId;
+	}
+	public void setUsreduId(int usreduId) {
+		this.usreduId = usreduId;
+	}
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	public int getUserId() {
@@ -48,17 +54,11 @@ public class UserEducationalDetails {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public int getXthPercentage() {
-		return XthPercentage;
+	public String getXthStream() {
+		return XthStream;
 	}
-	public void setXthPercentage(int xthPercentage) {
-		XthPercentage = xthPercentage;
-	}
-	public int getXthYear() {
-		return XthYear;
-	}
-	public void setXthYear(int xthYear) {
-		XthYear = xthYear;
+	public void setXthStream(String xthStream) {
+		XthStream = xthStream;
 	}
 	public String getXthBoard() {
 		return XthBoard;
@@ -66,17 +66,23 @@ public class UserEducationalDetails {
 	public void setXthBoard(String xthBoard) {
 		XthBoard = xthBoard;
 	}
-	public int getXIIthPercentage() {
-		return XIIthPercentage;
+	public int getXthYear() {
+		return XthYear;
 	}
-	public void setXIIthPercentage(int xIIthPercentage) {
-		XIIthPercentage = xIIthPercentage;
+	public void setXthYear(int xthYear) {
+		XthYear = xthYear;
 	}
-	public int getXIIthYear() {
-		return XIIthYear;
+	public int getXthPercentage() {
+		return XthPercentage;
 	}
-	public void setXIIthYear(int xIIthYear) {
-		XIIthYear = xIIthYear;
+	public void setXthPercentage(int xthPercentage) {
+		XthPercentage = xthPercentage;
+	}
+	public String getXIIthStream() {
+		return XIIthStream;
+	}
+	public void setXIIthStream(String xIIthStream) {
+		XIIthStream = xIIthStream;
 	}
 	public String getXIIthBoard() {
 		return XIIthBoard;
@@ -84,29 +90,23 @@ public class UserEducationalDetails {
 	public void setXIIthBoard(String xIIthBoard) {
 		XIIthBoard = xIIthBoard;
 	}
-	public String getuG() {
-		return uG;
+	public int getXIIthYear() {
+		return XIIthYear;
 	}
-	public void setuG(String uG) {
-		this.uG = uG;
+	public void setXIIthYear(int xIIthYear) {
+		XIIthYear = xIIthYear;
 	}
-	public String getStream() {
-		return stream;
+	public int getXIIthPercentage() {
+		return XIIthPercentage;
 	}
-	public void setStream(String stream) {
-		this.stream = stream;
+	public void setXIIthPercentage(int xIIthPercentage) {
+		XIIthPercentage = xIIthPercentage;
 	}
-	public int getuGMarks() {
-		return uGMarks;
+	public String getUgStream() {
+		return ugStream;
 	}
-	public void setuGMarks(int uGMarks) {
-		this.uGMarks = uGMarks;
-	}
-	public int getuGYear() {
-		return uGYear;
-	}
-	public void setuGYear(int uGYear) {
-		this.uGYear = uGYear;
+	public void setUgStream(String ugStream) {
+		this.ugStream = ugStream;
 	}
 	public String getUniversity() {
 		return university;
@@ -114,6 +114,17 @@ public class UserEducationalDetails {
 	public void setUniversity(String university) {
 		this.university = university;
 	}
-	
+	public int getUgYear() {
+		return ugYear;
+	}
+	public void setUgYear(int ugYear) {
+		this.ugYear = ugYear;
+	}
+	public int getUgPercentage() {
+		return ugPercentage;
+	}
+	public void setUgPercentage(int ugPercentage) {
+		this.ugPercentage = ugPercentage;
+	}
 	
 }
