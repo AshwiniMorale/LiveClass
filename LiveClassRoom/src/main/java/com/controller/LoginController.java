@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +41,7 @@ public class LoginController {
 	ResourceBundle rb = ResourceBundle.getBundle("application");
 	LogDetails logDetails;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@PostMapping(value = "/register")
 	public ModelAndView registration(@ModelAttribute("UserDetails") UserDetails userDetail, HttpServletRequest req,
 			HttpServletResponse res) {
 
@@ -73,7 +74,7 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Registration:: login() Controller called.");
 		String msgDenied = rb.getString("msgDenied");
