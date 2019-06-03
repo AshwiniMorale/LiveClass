@@ -28,18 +28,6 @@
 							class="fas fa-tachometer-alt"></i>Dashboard <span
 							class="bot-line"></span>
 					</a></li>
-					<li><a href="#"> <i class="fas fa-file-text"></i> <span
-							class="bot-line"></span>C
-					</a></li>
-					<li><a href="#"> <i class="fas fa-file-text"></i> <span
-							class="bot-line"></span>C++
-					</a></li>
-					<li><a href="#"> <i class="fas fa-file-text"></i> <span
-							class="bot-line"></span>Java
-					</a></li>
-					<li><a href="#"> <i class="fas fa-file-text"></i> <span
-							class="bot-line"></span>Bootstrap
-					</a></li>
 				</ul>
 			</div>
 			<div class="header__tool">
