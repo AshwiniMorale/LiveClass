@@ -3,8 +3,8 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_query")
-public class Query {
+@Table
+public class Query1 {
 
 	@Id
 	@GeneratedValue

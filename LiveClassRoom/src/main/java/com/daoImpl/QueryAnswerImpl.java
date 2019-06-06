@@ -3,10 +3,12 @@ package com.daoImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
 import com.bean.QueryAnswer;
 import com.dao.QueryAnswerDao;
 
+@Service
 public class QueryAnswerImpl implements QueryAnswerDao{
 
 

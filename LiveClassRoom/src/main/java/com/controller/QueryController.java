@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bean.Query;
+import com.bean.Query1;
 import com.daoImpl.QueryImpl;
 
 @Controller
@@ -23,15 +23,15 @@ public class QueryController {
 	@Autowired
 	QueryImpl queryImpl;
 	
-	@RequestMapping(value = "/savequery", method = RequestMethod.POST)
-	public ModelAndView saveQuery(@ModelAttribute("Query") Query query, HttpServletRequest req, HttpServletResponse res)
+	@RequestMapping(value = "/savequery1", method = RequestMethod.POST)
+	public ModelAndView saveQuery(@ModelAttribute("Query1") Query1 query, HttpServletRequest req, HttpServletResponse res)
 	{
 		System.out.println(":: saveQuery() called:-->QueryController");
 		HttpSession httpSession = req.getSession();
 		userId = (int) httpSession.getAttribute("userId");
 		System.out.println("userId from sessiom:-->" + userId);
 		query.setUserId(userId);
-		queryImpl.saveQuery(query);
+		queryImpl.saveQuery1(query);
 		System.out.println("saveQuery:: QueryController called.");
 		return new ModelAndView("stuDashboard", MESSAGE, "your query have been saved successfully");
 		

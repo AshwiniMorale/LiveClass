@@ -3,7 +3,7 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_answer")
+@Table
 public class QueryAnswer {
 	@Id
 	@GeneratedValue
