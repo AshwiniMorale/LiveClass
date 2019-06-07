@@ -41,11 +41,11 @@
 				<div class="main-containt">
 					<div class="section__content section__content--p30">
 						<form action="stuDashboard" method="post">
-							<div class="col-md-12" style="height: 500px">
+							<div class="col-md-15" style="height: 500px">
 								<div class="card border border-primary">
-									<div class="card-header bg-info">
+									<!-- <div class="card-header bg-info">
 										<strong class="card-title text-white">DashBoard</strong>
-									</div>
+									</div> -->
 
 					<div class="card-body">
 						<div class="row" >
