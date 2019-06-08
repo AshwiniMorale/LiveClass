@@ -3,13 +3,16 @@ package com.daoImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
+import com.bean.QueryAnswer;
 import com.dao.QueryAnswerDao;
 
+@Service
 public class QueryAnswerImpl implements QueryAnswerDao{
 
 
-	public void saveQueryAnswer() {
+	public void saveQueryAnswer(QueryAnswer queryAnswer) {
 		
 		System.out.println("QueryAnswerImpl::saveQueryAnswer() called.");
 
@@ -18,7 +21,7 @@ public class QueryAnswerImpl implements QueryAnswerDao{
 		Transaction tx = session.beginTransaction();
 		System.out.println("Transection Begin");
 
-		session.save(tx);
+		session.save(queryAnswer);
 		System.out.println("Object saved successfully...");
 		
 		tx.commit();

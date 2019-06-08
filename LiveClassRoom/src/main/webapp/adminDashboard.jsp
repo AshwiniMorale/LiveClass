@@ -10,9 +10,10 @@
 <body class="animsition">
 	<div class="page-wrapper">
 		<%@include file="header.jsp"%>
+
 		<!-- PAGE CONTENT-->
 		<div class="page-content--bgf7">
-			<!-- BREADCRUMB-->
+			<!-- BREADCRUMB -->
 			<section class="au-breadcrumb2">
 				<div class="container">
 					<div class="row">
@@ -35,48 +36,61 @@
 			<div class="container-flude bg-white">
 				<div class="main-containt">
 					<div class="section__content section__content--p30">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="card border border-primary">
-									<div class="card-header">
-										<strong class="card-title">Card Outline</strong>
-									</div>
-									<div class="card-body">
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4" style="height: 400px">
-								<div class="card border border-primary">
-									<div class="card-header">
 
-										<strong class="card-title">Card Outline</strong>
-									</div>
-									<div class="card-body">
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-									</div>
+						<div class="container-flude bg-white">
+							<div class="main-containt">
+								<div class="section__content section__content--p80">
+									<form action="stuDashboard" method="post">
+										<div class="col-md-15" style="height: 500px">
+											<div class="card border border-primary">
+												<!-- <div class="card-header bg-info">
+										<strong class="card-title text-white">DashBoard</strong>
+									</div> -->
+
+												<div class="card-body">
+													<div class="row">
+														<div class="col col-5" style=" height: 110px;">
+															<section class="card" style="height: 100px; padding: 10px; font-size: 20px;">
+																<div class="card-body text-secondary">
+																	<a href="studetail.jsp"><b>Student details</b></a>
+																</div>
+															</section>
+														</div>
+														<div class="col col-5" style="height: 110px; ">
+															<section class="card" style="height: 100px; padding: 10px; font-size: 20px;">
+																<div class="card-body text-secondary">
+																	<a href="facultydetail.jsp"><b>faculty Details</b></a>
+																</div>
+															</section>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col col-5" style="height: 110px;">
+															<section class="card" style="height: 100px; padding: 10px; font-size: 20px;">
+																<div class="card-body text-secondary">
+																	<a href="Sendnotice.jsp"><b> Notice</b></a>
+																</div>
+															</section>
+														</div>
+													</div>
+												</div>
+
+
+												<!-- CARD END -->
+											</div>
+									</form>
 								</div>
+								<!-- section__content -->
 							</div>
-							<div class="col-md-4">
-								<div class="card border border-primary">
-									<div class="card-header">
-										<strong class="card-title">Card Outline</strong>
-									</div>
-									<div class="card-body">
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-									</div>
-								</div>
-							</div><!-- Column end -->
-						</div><!-- Row end -->
+							<!-- main content end -->
+						</div>
+
 					</div>
-				</div><!-- main content end -->
+					<!-- main content end -->
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 	Pagewrapper ends -->
-	<%@include file="footer.jsp"%>
+		<!-- 	Pagewrapper ends -->
+		<%@include file="footer.jsp"%>
 </body>
 </html>

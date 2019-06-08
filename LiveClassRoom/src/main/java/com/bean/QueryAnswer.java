@@ -3,15 +3,14 @@ package com.bean;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_query")
-public class Query {
-
+@Table
+public class QueryAnswer {
 	@Id
 	@GeneratedValue
-	private int qid;
+	private int qAid;
 
 	@Column
-	private String query;
+	private String answer;
 
 	@Column
 	private String subject;
@@ -19,20 +18,20 @@ public class Query {
 	@Column
 	private int userId;
 
-	public int getQid() {
-		return qid;
+	public int getqAid() {
+		return qAid;
 	}
 
-	public void setQid(int qid) {
-		this.qid = qid;
+	public void setqAid(int qAid) {
+		this.qAid = qAid;
 	}
 
-	public String getQuery() {
-		return query;
+	public String getAnswer() {
+		return answer;
 	}
 
-	public void setQuery(String query) {
-		this.query = query;
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 	public String getSubject() {
@@ -42,7 +41,7 @@ public class Query {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	public int getUserId() {
@@ -52,5 +51,6 @@ public class Query {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 
 }
