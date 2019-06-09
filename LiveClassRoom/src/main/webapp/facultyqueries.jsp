@@ -23,7 +23,7 @@
 									<ul class="list-unstyled list-inline au-breadcrumb__list">
 										<li class="list-inline-item active"><a href="#">Home</a></li>
 										<li class="list-inline-item seprate"><span>/</span></li>
-										<li class="list-inline-item">Query Details</li>
+										<li class="list-inline-item">Faculty Dashboard</li>
 									</ul>
 								</div>
 							</div>
@@ -35,40 +35,47 @@
 			<div class="container-flude bg-white">
 				<div class="main-containt">
 					<div class="section__content section__content--p30">
+
+						<%
+							Integer userId = (Integer) session.getAttribute("userId");
+							Integer subId = (Integer) session.getAttribute("subid");
+						%>
+						<sql:query var="stuSubject" dataSource="${connectionDS}">
+        						SELECT subject FROM query1 q,
+								WHERE q.subid=<%=subId%>;
+    					</sql:query>
+						<sql:query var="facSubject" dataSource="${connectionDS}">
+        						SELECT subject FROM queryanswer s,
+								WHERE s.subid=<%=subId%>;
+    					</sql:query>
+						<c:if test="${stuSubject}==${facSubject}">
+							<sql:query var="queries" dataSource="${connectionDS}">
+        							SELECT query FROM query1 q1,
+									WHERE q1.subid=<%=subId%>;
+    						</sql:query>
+
+						</c:if>
+
 						<form action="#" method="post">
 							<div class="col-md-12" style="height: 500px">
 								<div class="card border border-primary">
 									<div class="card-header bg-info">
-										<strong class="card-title text-white">Queries</strong>
+										<strong class="card-title text-white">Send Asnwer to
+											students</strong>
 									</div>
 
 									<div class="card-body">
-										<div class="col col-10">
-
-											<div class="row">
-												<div class="col col-5">
-													<section class="card">
-														<div class="card-body text-secondary">
-															<a href="query.jsp"><b>Ask Query</b></a>
-														</div>
-													</section>
+									<c:forEach var="user" items="${listStud.rows}">
+										<div class="col col-8">
+											<section class="card">
+												<div class="card-body text-secondary">
+													<input type="text"
+														value="<c:out value="${queries.query}" />">
 												</div>
-												<div class="col col-5">
-													<section class="card">
-														<div class="card-body text-secondary">
-															<a href="#.jsp"><b>query</b></a>
-														</div>
-													</section>
-												</div>
-											</div>
-
-
-
+											</section>
 										</div>
+										</c:forEach>
 									</div>
-
-
-
 									<!-- CARD END -->
 								</div>
 						</form>

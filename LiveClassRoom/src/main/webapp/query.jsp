@@ -34,7 +34,7 @@
 			<div class="container-flude bg-white">
 				<div class="main-containt">
 					<div class="section__content section__content--p30">
-						<form action="savequery1.htm" method="post">
+						<form action="savequery.htm" method="post">
 							<div class="col-md-10" style="height: 500px">
 								<div class="card border border-primary">
 									<div class="card-header bg-info">

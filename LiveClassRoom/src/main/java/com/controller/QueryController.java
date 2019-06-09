@@ -23,7 +23,7 @@ public class QueryController {
 	@Autowired
 	QueryImpl queryImpl;
 	
-	@RequestMapping(value = "/savequery1", method = RequestMethod.POST)
+	@RequestMapping(value = "/savequery", method = RequestMethod.POST)
 	public ModelAndView saveQuery(@ModelAttribute("Query1") Query1 query, HttpServletRequest req, HttpServletResponse res)
 	{
 		System.out.println(":: saveQuery() called:-->QueryController");
