@@ -9,9 +9,8 @@
 </head>
 <body class="animsition">
 	<div class="page-wrapper">
-		<%@include file="header.jsp"%>
-
-		<!-- PAGE CONTENT-->
+	<%@include file="headerfaculty.jsp"%>
+	<!-- PAGE CONTENT-->
 		<div class="page-content--bgf7">
 			<!-- BREADCRUMB -->
 			<section class="au-breadcrumb2">

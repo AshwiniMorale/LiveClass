@@ -9,7 +9,7 @@
 </head>
 <body class="animsition">
 	<div class="page-wrapper">
-		<%@include file="header.jsp"%>
+		<%@include file="headerfaculty.jsp"%>
 		<!-- PAGE CONTENT-->
 		<div class="page-content--bgf7">
 			<!-- 		BREADCRUMB -->
