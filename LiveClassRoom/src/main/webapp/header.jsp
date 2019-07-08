@@ -103,7 +103,7 @@
 								</div>
 							</div>
 							<div class="account-dropdown__footer">
-								<a href="logout.htm"> <i class="zmdi zmdi-power"></i>Logout
+								<a href="login.jsp"> <i class="zmdi zmdi-power"></i>Logout
 								</a>
 							</div>
 						</div>
